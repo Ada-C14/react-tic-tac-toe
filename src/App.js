@@ -29,11 +29,24 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  
+  const [player, setPlayer] = useState(PLAYER_1);
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+  //write out logic for the callback function 'onClickCallback' that is called when a square is clicked on
+  //pass onClickCallback through Board to each Square component. 
+  // 'onClickCallback' is the event handeler method that run when event is triggered(user clicking on square) 
+
+  // when square is clicked, the callback function will be called and change it to X or O DEPENDING on Current PLAYER
+  const onClickCallback = (selectedSquare) => {
+
+
+    return (
+    )
+  }
 
   const checkForWinner = () => {
     // Complete in Wave 3
@@ -61,11 +74,10 @@ const App = () => {
       </header>
       <main>
 {/* App should pass to Board a 2D array of JavaScript objects  */}
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback = {onClickCallback} />
       </main>
     </div>
   );
 }
 
 export default App;
-
