@@ -38,7 +38,7 @@ Board.propTypes = {
     )
   ),
   onClickCallback: PropTypes.func.isRequired,
-  player: PropTypes.string
+  player: PropTypes.string.isRequired
 };
 
 export default Board;
