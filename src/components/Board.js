@@ -15,17 +15,17 @@ const generateSquareComponents = (squares, onClickCallback) => {
     for (let col = 0; col < 3; col += 1) {
       const currentSquare = squares[row][col];
       singleRow.push(
-        <div key={col}>
-          <Square key={currentSquare.id}
-          id={currentSquare.id}
-          value={currentSquare.value}
-          onClickCallback={onClickCallback} />
+        <div key = {col}>
+          <Square key = {currentSquare.id}
+          id = {currentSquare.id}
+          value = {currentSquare.value}
+          onClickCallback = {onClickCallback} />
         </div>
 
       );
     }
     totalRows.push(
-      <div key={row}>
+      <div key = {row}>
       {singleRow}
       </div>
     );
