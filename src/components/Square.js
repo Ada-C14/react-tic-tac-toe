@@ -7,8 +7,11 @@ const Square = (props) => {
   // For Wave 1 enable this 
   //  Component to alert a parent 
   //  component when it's clicked on.
+  const onPlayClick =  () => {
+    props.onClickCallback(props.id);
+  }
 
-  return <button
+  return <button onClick={onPlayClick}
     className="square"
   >
     {props.value}
