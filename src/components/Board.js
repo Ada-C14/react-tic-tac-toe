@@ -18,13 +18,12 @@ const generateSquareComponents = (squares, onClickCallback) => {
           id={col.id}
           value={col.value}
           key={col.id}
+          onClickCallback={onClickCallback}
           />
       );
     };
   };
   return squareBox;
-
-
 }
 
 const Board = ({ squares, onClickCallback }) => {
