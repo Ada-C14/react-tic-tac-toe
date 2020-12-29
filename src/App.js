@@ -49,12 +49,21 @@ const App = () => {
       } else {
         UpdatedOneDimentionalArraySquares.push(square);
       }
+  
     });
 
-    // setSquares(newsquares)
+    const newSquares = generateSquares()
 
+    let i=0
 
-}
+    while (i < 9) {
+      newSquares[i/3][i%3] = UpdatedOneDimentionalArraySquares[i]
+      i++
+    }
+
+    setSquares(newSquares)
+
+    }
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
