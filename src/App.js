@@ -77,7 +77,7 @@ const App = () => {
         <button onClick={resetGame}> Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={onClickCallback} player={player} />
+        <Board squares={squares} onClickCallback={onClickCallback} winner={winner} />
       </main>
     </div>
   );
