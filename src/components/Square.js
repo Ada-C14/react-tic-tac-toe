@@ -10,9 +10,11 @@ const Square = (props) => {
   const onPlayClick = () => {
     const updatedSquare = {
       id: props.id,
-      value: 'X'
+      value: props.player
     };
-    props.onClickCallback(updatedSquare);
+    // if (props.value === '') {
+      props.onClickCallback(updatedSquare)
+    // };
   };
 
   return (
@@ -26,6 +28,7 @@ Square.propTypes = {
   value: PropTypes.string.isRequired,
   onClickCallback: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  player: PropTypes.string.isRequired
 };
 
 export default Square
