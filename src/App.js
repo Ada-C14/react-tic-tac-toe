@@ -35,7 +35,19 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+  const updateSquare = (updatedSquare) => {
+    const newSquares = [];
 
+    squares.forEach((square) => {
+      if (square.id === updatedSquare.id) {
+        newSquares.push(updatedSquare);
+      } else {
+        newSquares.push(square);
+      }
+      });
+
+      setSquares(newSquares);
+  }
 
   const checkForWinner = () => {
     // Complete in Wave 3
@@ -62,7 +74,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={updateSquare} />
       </main>
     </div>
   );
