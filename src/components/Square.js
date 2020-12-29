@@ -8,17 +8,26 @@ const Square = (props) => {
   //  Component to alert a parent 
   //  component when it's clicked on.
 
-  return <button
-    className="square"
-  >
+  const onClickChangeValue = () => {
+    const updatedSquare = {
+      id: props.id,
+      value: props.player,
+    };
+
+    if (props.value === '') {props.onClickCallback(updatedSquare)}
+  };
+
+
+  return (<button onClick={onClickChangeValue} className="square">
     {props.value}
-  </button>
+  </button>);
 }
 
 Square.propTypes = {
   value: PropTypes.string.isRequired,
   onClickCallback: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+  player: PropTypes.string.isRequired
 };
 
 export default Square
