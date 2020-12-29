@@ -44,7 +44,10 @@ const App = () => {
 
   const onClickCallback = (squareId) => {
     
-    const newSquares = [...squares];
+    const newSquares = []
+    for(const row of squares) {
+      newSquares.push(row)
+    }
     
     for(const row of newSquares) {
       for(const square of row) {
@@ -53,12 +56,13 @@ const App = () => {
         }
       }
     };
-    
+  
     setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
     setSquares(newSquares);
     console.log(squareId);
   }
-  
+
+
 
   const checkForWinner = () => {
     // Complete in Wave 3
