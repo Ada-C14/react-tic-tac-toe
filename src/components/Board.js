@@ -4,7 +4,7 @@ import Square from './Square';
 import PropTypes from 'prop-types';
 
 
-const generateSquareComponents = (squares, onClickCallback) => {
+const generateSquareComponents = (squares, onClickCallback, player) => {
   // Complete this for Wave 1
   // squares is a 2D Array, but 
   //  you need to return a 1D array
@@ -17,15 +17,16 @@ const squareComponents = flattenarray.map((square) =>
     id={square.id} 
     value={square.value}
     onClickCallback={onClickCallback}
-    key={square.id} />
+    key={square.id}
+    player={player} />
 
 )
 
 return squareComponents;
 }
 
-const Board = ({ squares, onClickCallback }) => {
-  const squareList = generateSquareComponents(squares, onClickCallback);
+const Board = ({ squares, onClickCallback, player }) => {
+  const squareList = generateSquareComponents(squares, onClickCallback, player);
   // console.log(squareList);
   return <div className="grid" >
     {squareList}
