@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import './Square.css'
@@ -8,6 +8,9 @@ const Square = (props) => {
   //  Component to alert a parent 
   //  component when it's clicked on.
 
+  const [value, setValue] = useState('');
+  
+  
 
   return <button
     className="square"

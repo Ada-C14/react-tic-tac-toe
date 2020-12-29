@@ -36,6 +36,10 @@ const App = () => {
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
 
+  const onClickCallback = () => {
+    
+  }
+
 
   const checkForWinner = () => {
     // Complete in Wave 3
