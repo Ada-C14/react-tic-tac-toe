@@ -45,17 +45,21 @@ const App = () => {
       setPlayer(PLAYER_1);
     }
 
-    const squaresList = []
+    const newSquares = [];
     
-    squares.forEach((square) => {
-      if (square.id === updatedSquare.id) {
-        squaresList.push(updatedSquare);
-      } else {
-        squaresList.push(square);
-      }
+    squares.forEach((squareRow) => {
+      const newSquareRow = [];
+      squareRow.forEach((square) => {
+        if (square.id === updatedSquare.id) {
+          newSquareRow.push(updatedSquare);
+        } else {
+          newSquareRow.push(square);
+        }
+      });
+      newSquares.push(newSquareRow);
     });
 
-    setSquares(squaresList);
+    setSquares(newSquares);
   };
 
 
