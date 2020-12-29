@@ -30,11 +30,46 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1)
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+  const fillSquare = (squares, props) => {
+
+    const changePlayer = () => setCurrentPlayer(!currentPlayer);
+
+    
+
+    if (squares.atIndex(props.id) !== '') {
+      return;
+    } else {
+      
+    }
+    let i = 0;
+    let j = 0;
+    do {
+      do {
+        if (j === props.id) {
+          // set square to value of currentPlayer
+        }
+      } while (j < 3)
+
+    } while (i < 3)
+    // if (currentPlayer === PLAYER_1) {
+    //   currentPlayer = PLAYER_2
+    // } else {
+    //   currentPlayer = PLAYER_1
+    // }
+    //need id of clocked on square
+    //change value of sqaure
+    //change player
+    // if square is false, if square !== '' cant be clicked on
+    return (
+      <button onClick={changePlayer}></button>
+    );
+  }
 
 
   const checkForWinner = () => {
@@ -58,7 +93,8 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        {/* <h2>The winner is ... -- Fill in for wave 3 </h2> */}
+        <h2>{currentPlayer}</h2>
         <button>Reset Game</button>
       </header>
       <main>
