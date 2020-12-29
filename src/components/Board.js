@@ -11,13 +11,21 @@ const generateSquareComponents = (squares, onClickCallback) => {
   //  you need to return a 1D array
   //  of square components
 
-  // squares.map((square) => {
-    return (
-      <Square
-      
-      />
-    )
+  squares.forEach((row) => {
+    row.forEach()
   })
+    console.log(squares)
+    console.log(square)
+    return (
+      <div>
+      <Square
+        id={square.id}
+        value={square.value}
+        onClickCallback={onClickCallback}
+      />
+      </div>
+    )
+  )
   
 }
 
