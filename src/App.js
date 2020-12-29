@@ -86,8 +86,8 @@ const App = () => {
       }
     };
 
-    const diagonalOne = (squares[1][1].value != '' && squares[0][0].value === squares[1][1].value && squares[0][0].value === squares[2][2]);
-    const diagonalTwo = (squares[1][1].value != '' && squares[0][2].value === squares[1][1].value && squares[0][2].value === squares[2][0]);
+    const diagonalOne = (squares[1][1].value != '' && squares[0][0].value === squares[1][1].value && squares[0][0].value === squares[2][2].value);
+    const diagonalTwo = (squares[1][1].value != '' && squares[0][2].value === squares[1][1].value && squares[0][2].value === squares[2][0].value);
 
     if (diagonalOne || diagonalTwo) {
       setWinner(squares[1][1].value);
