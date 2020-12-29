@@ -83,8 +83,52 @@ describe('Wave 1: Board', () => {
   });
 });
 describe('Wave 2: Board', () => {
+  const SAMPLE_BOARD = [
+    [
+      {
+        value: '',
+        id: 0,
+      },
+      {
+        value: '',
+        id: 1,
+      },
+      {
+        value: '',
+        id: 2,
+      },
+    ],
+    [
+      {
+        value: '',
+        id: 3,
+      },
+      {
+        value: '',
+        id: 4,
+      },
+      {
+        value: '',
+        id: 5,
+      },
+    ],
+    [
+      {
+        value: '',
+        id: 6,
+      },
+      {
+        value: '',
+        id: 7,
+      },
+      {
+        value: '',
+        id: 8,
+      },
+    ],    
+  ];
   describe('button click callbacks', () => {
-    test.skip('that the callback is called for the 1st button', () => {
+    test('that the callback is called for the 1st button', () => {
       // Arrange
       const callback = jest.fn();
       const { container } = render(<Board squares={SAMPLE_BOARD} onClickCallback={callback} />);
@@ -97,7 +141,7 @@ describe('Wave 2: Board', () => {
       expect(callback).toHaveBeenCalled();
     });
 
-    test.skip('that the callback is called for the last button', () => {
+    test('that the callback is called for the last button', () => {
       // Arrange
       const callback = jest.fn();
       const { container } = render(<Board squares={SAMPLE_BOARD} onClickCallback={callback} />);
