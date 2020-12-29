@@ -31,6 +31,8 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(PLAYER_1)
+  const [gameover, setGameover] = useState(false);
+  const [winner, setWinner] = useState('NOBODY');
 
   // Wave 2
   // You will need to create a method to change the square 
@@ -59,11 +61,40 @@ const App = () => {
       newSquares.push(newSquareRow);
     });
 
-    setSquares(newSquares);
+    if (gameover === false) {
+      setSquares(newSquares);
+      checkForWinner(squares);
+    }
   };
 
 
-  const checkForWinner = () => {
+  const checkForWinner = (squares) => {
+
+    squares.forEach((squareRow) => {
+      if (squareRow[0].value != '' && squareRow[0].value == squareRow[1].value && squareRow[0].value === squareRow[2].value) {
+        setWinner(squareRow[0].value);
+        setGameover(true);
+        return;
+      }
+    });
+
+    for (let c = 0; c < 3; c++) {
+      if (squares[0][c].value != '' && squares[0][c].value === squares[1][c].value && squares[0][c].value === squares[2][c].value) {
+        setWinner(squares[0][c].value);
+        setGameover(true);
+        return;
+      }
+    };
+
+    const diagonalOne = (squares[1][1].value != '' && squares[0][0].value === squares[1][1].value && squares[0][0].value === squares[2][2]);
+    const diagonalTwo = (squares[1][1].value != '' && squares[0][2].value === squares[1][1].value && squares[0][2].value === squares[2][0]);
+
+    if (diagonalOne || diagonalTwo) {
+      setWinner(squares[1][1].value);
+      setGameover(true);
+      return;
+    }    
+
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -84,7 +115,8 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        {/* different h2 while game in play */}
+        <h2>{winner} wins!</h2>
         <button>Reset Game</button>
       </header>
       <main>
