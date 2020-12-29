@@ -14,7 +14,7 @@ const Square = (props) => {
       value: props.player,
     };
 
-    props.onClickCallback(updatedSquare);
+    if (props.value === '') {props.onClickCallback(updatedSquare)}
   };
 
 
