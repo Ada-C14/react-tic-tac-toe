@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -30,16 +30,25 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  console.log(squares);
+  const [player, setPlayer] = useState(PLAYER_1)
+  
 
   const onClickCallback = (updatedSquare) => {
+
+   
+
     const squareList = [];
 
     squares.forEach((row, i) => {
       squareList.push([]);
       row.forEach(square => {
-        if (square.id === updatedSquare.id) {
+        if (square.id === updatedSquare.id && square.value === '') {
           squareList[i].push(updatedSquare); 
+          if (player === PLAYER_1) {
+            setPlayer(PLAYER_2);
+          } else if (player === PLAYER_2) {
+            setPlayer(PLAYER_1);
+          }
         } else {
           squareList[i].push(square);
         }
@@ -79,7 +88,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={onClickCallback} />
+        <Board squares={squares} onClickCallback={onClickCallback} player={player}/>
       </main>
     </div>
   );
