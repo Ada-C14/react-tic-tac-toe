@@ -28,13 +28,13 @@ const generateSquares = () => {
 const App = () => {
 
   // This starts state off as a 2D array of JS objects with empty value and unique ids.
+    // squares is a state variable that holds the current value of state 
+    // setSquaures is the function that updates the state 
   const [squares, setSquares] = useState(generateSquares());
-  // squares is a state variable that holds the current value of state 
-  // setSquaures is the function that updates the state 
-  
-  const [currentPlayer, setPlayer] = useState(PLAYER_1); 
-  // default player is always player_1, 'X' 
 
+  const [currentPlayer, setPlayer] = useState(PLAYER_1); // default player is always player_1, 'X' 
+
+  const [currentWinner, setWinner] = useState(''); // default winner is empty 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -52,13 +52,16 @@ const App = () => {
   for (let row = 0; row < updatedSquares.length; row ++) {
     for (let col = 0; col < updatedSquares.length; col ++) {   
       if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '') {
-          updatedSquares[row][col].value = currentPlayer  // fills in value for blank square 
+          updatedSquares[row][col].value = currentPlayer  // fills in value for blank square
       } else {
           currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
+          }
+          
         }
       }
-    }
+    
   setSquares(updatedSquares)
+  checkForWinner();
   }
   
 
@@ -73,6 +76,10 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+    if (squares[0][0].value === squares[0][1].value) {
+        setWinner(squares[0][0].value);
+    }
+
   }
 
   const resetGame = () => {
@@ -83,12 +90,13 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>The winner is  {currentWinner} -- Fill in for wave 3 </h2>
         <button>Reset Game</button>
       </header>
       <main>
 {/* App should pass to Board a 2D array of JavaScript objects  */}
         <Board squares={squares} onClickCallback = {onClickCallback} />
+        console.log(onClickCallback)
       </main>
     </div>
   );
