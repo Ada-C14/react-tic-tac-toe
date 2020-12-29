@@ -9,7 +9,10 @@ const Square = (props) => {
   //  component when it's clicked on.
 
   const clickSquare = () => {
-    props.onClickCallback(props.id);
+
+    if (props.value === '') {
+      props.onClickCallback(props.id);
+    };
   };
   return <button
     className="square"
@@ -18,7 +21,6 @@ const Square = (props) => {
     {props.value}
   </button>
 };
-
 Square.propTypes = {
   value: PropTypes.string.isRequired,
   onClickCallback: PropTypes.func.isRequired,
