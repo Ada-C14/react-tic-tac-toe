@@ -10,11 +10,27 @@ const Square = (props) => {
 
   const [value, setValue] = useState('');
   
-  
+  const onSquareClick = () => {
+    console.log(props.value);
+    console.log(props.id);
+    console.log(props.currentPlayer);
+    // If the square is blank
+    if (props.value === '') {
+      // Set value to current player
+      const value = props.currentPlayer;
+    }
+
+    const updatedSquare = {
+      id: props.id,
+      value: value,
+    }
+
+    props.onClickCallback(updatedSquare);
+  }
 
   return <button
     className="square"
-    onClick={props.onClickCallback}
+    onClick={onSquareClick}
   >
     {props.value}
   </button>

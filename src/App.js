@@ -27,7 +27,15 @@ const generateSquares = () => {
 
 const App = () => {
   // Track which player's turn it is
-  const [currentPlayer, toggleCurrentPlayer] = useState(PLAYER_1);
+  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
+
+  const switchPlayer = () => {
+    if (currentPlayer === PLAYER_1) {
+      setCurrentPlayer(PLAYER_2);
+    } else {
+      setCurrentPlayer(PLAYER_1);
+    }
+  }
 
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
@@ -38,8 +46,8 @@ const App = () => {
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
 
-  const onClickCallback = (square) => {
-    console.log(this);
+  const onClickCallback = (updatedSquare) => {
+    console.log(updatedSquare);
     // Check if square has value
 
     // If it has value, return without doing anything
@@ -47,6 +55,19 @@ const App = () => {
     // Set value of square according to current player
 
     // Toggle current player
+    let newSquaresArray = [];
+
+    squares.forEach((square) => {
+      
+      if (square.id === updatedSquare.id) {
+        newSquaresArray.push(updatedSquare)
+      }
+      else {
+        newSquaresArray.push(square)
+      }
+    });
+    setSquares(newSquaresArray);
+    switchPlayer();
   }
 
 
@@ -75,7 +96,10 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={onClickCallback}/>
+        <Board 
+        squares={squares} 
+        onClickCallback={onClickCallback} 
+        currentPlayer={currentPlayer}/>
       </main>
     </div>
   );
