@@ -48,8 +48,8 @@ const App = () => {
     
     for(const row of newSquares) {
       for(const square of row) {
-        if (square.id === squareId) {
-          square.value = player;
+        if (square.id === squareId && square.value === '') {
+          square.value = player;          
         }
       }
     };
