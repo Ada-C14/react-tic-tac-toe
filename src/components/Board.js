@@ -10,7 +10,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
      
      return ( 
      <Square 
-        key={i * 3 + j}
+        key={square.id}
         id={square.id}
         value={square.value}
         onClickCallback= {onClickCallback}

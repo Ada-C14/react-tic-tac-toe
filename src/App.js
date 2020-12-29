@@ -30,7 +30,29 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  
+  const updateSquare = (updatedSquare) => {
+    console.log(updatedSquare)
+    console.log('hiiiiii!!!')
+    const newSquares = [];
 
+    //for of loop
+    //need to make new set of tic tac toe data
+    //can pass to set squares
+    //want deep copies of data (2-d arration, copy square data)
+    //spread operator can do copy of simple object
+    //can spread object into new object
+    //newSquare = {...square}
+    //once you have copy, can safely make changes to copy (x's o's)
+    squares.forEach((square) => {
+      if (square.id === updatedSquare.id) {
+        squares.push(updatedSquare);
+      } else {
+        squares.push(square);
+      }
+    });
+    setSquares(squares)
+  }
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -62,7 +84,8 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board onClickCallback={updateSquare} squares={squares} />
+        
       </main>
     </div>
   );
