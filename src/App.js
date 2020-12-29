@@ -29,8 +29,11 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  // squares is a state variable that holds the current value of state 
+  // setSquaures is the function that updates the state 
   
-  const [player, setPlayer] = useState(PLAYER_1);
+  const [currentPlayer, setPlayer] = useState(PLAYER_1); 
+  // default player is always player_1, 'X' 
 
   // Wave 2
   // You will need to create a method to change the square 
@@ -38,15 +41,26 @@ const App = () => {
   //   Then pass it into the squares as a callback
   //write out logic for the callback function 'onClickCallback' that is called when a square is clicked on
   //pass onClickCallback through Board to each Square component. 
-  // 'onClickCallback' is the event handeler method that run when event is triggered(user clicking on square) 
+  // 'onClickCallback' is the event handeler method that runs when event is triggered(user clicking on square) 
 
-  // when square is clicked, the callback function will be called and change it to X or O DEPENDING on Current PLAYER
-  const onClickCallback = (selectedSquare) => {
+  // when square is clicked, the callback function will be called and change it to X or O DEPENDING on the PLAYER
+  // - selectedSquareID is the square that was clicked on. Passed in as an argument in our square component.  
+  const onClickCallback = (selectedSquareId) => {
 
+  const updatedSquares = [...squares]; // shallow copy of squares 
 
-    return (
-    )
+  for (let row = 0; row < updatedSquares.length; row ++) {
+    for (let col = 0; col < updatedSquares.length; col ++) {   
+      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '') {
+          updatedSquares[row][col].value = currentPlayer  // fills in value for blank square 
+      } else {
+          currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
+        }
+      }
+    }
+  setSquares(updatedSquares)
   }
+  
 
   const checkForWinner = () => {
     // Complete in Wave 3
