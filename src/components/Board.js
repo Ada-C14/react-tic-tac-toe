@@ -5,11 +5,16 @@ import PropTypes from 'prop-types';
 
 
 const generateSquareComponents = (squares, onClickCallback) => {
-  // Complete this for Wave 1
-  // squares is a 2D Array, but 
-  //  you need to return a 1D array
-  //  of square components
 
+  const oneRow = squares.map ((row) => {
+    return row.map ((square) => {
+      return (
+        <Square id={square.id} value={square.value} onClickCallback={onClickCallback} />
+      );
+    });
+  });
+
+  return (oneRow);
 }
 
 const Board = ({ squares, onClickCallback }) => {

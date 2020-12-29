@@ -66,11 +66,12 @@ describe('Wave 1: Board', () => {
   test('that the board can render empty squares', () => {
     // Arrange
     const emptyBoard = SAMPLE_BOARD.map((row) => {
-      return row.map((square) => {
+      return row.map((square) => {        
         return {
           ...square,
           value: '',
         }
+        
       });
     });
 
