@@ -52,18 +52,14 @@ const App = () => {
   
     });
 
-    const newSquares = generateSquares()
 
-    let i=0
-
-    while (i < 9) {
-      newSquares[i/3][i%3] = UpdatedOneDimentionalArraySquares[i]
-      i++
-    }
-
+    let newSquares = []; 
+    for(let i=0;i < UpdatedOneDimentionalArraySquares.length;i = i+3)
+      {newSquares.push(UpdatedOneDimentionalArraySquares.slice(i,i+3))};
+      
     setSquares(newSquares)
 
-    }
+  }
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -95,7 +91,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback />
+        <Board squares={squares} onClickCallback={updateSquare} />
       </main>
     </div>
   );

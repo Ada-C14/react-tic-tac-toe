@@ -14,7 +14,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
 
   return (
     oneDimentionalArray.map((square) => (
-      <Square id={square.id} value={square.value}/>
+      <Square id={square.id} value={square.value} onClickCallback={onClickCallback}/>
     ))
   );
 
