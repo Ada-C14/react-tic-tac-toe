@@ -4,12 +4,11 @@ import Square from './Square';
 import PropTypes from 'prop-types';
 
 
-const generateSquareComponents = (squares, onClickCallback) => {
-
+const generateSquareComponents = (squares, onClickCallback, currentPlayer) => {
   const oneRow = squares.map ((row) => {
     return row.map ((square) => {
       return (
-        <Square id={square.id} value={square.value} onClickCallback={onClickCallback} />
+        <Square id={square.id} value={square.value} onClickCallback={onClickCallback} currentPlayer={currentPlayer} />
       );
     });
   });
@@ -17,8 +16,8 @@ const generateSquareComponents = (squares, onClickCallback) => {
   return (oneRow);
 }
 
-const Board = ({ squares, onClickCallback }) => {
-  const squareList = generateSquareComponents(squares, onClickCallback);
+const Board = ({ squares, onClickCallback, currentPlayer }) => {
+  const squareList = generateSquareComponents(squares, onClickCallback, currentPlayer);
   console.log(squareList);
   return <div className="grid" >
     {squareList}
@@ -35,6 +34,7 @@ Board.propTypes = {
     )
   ),
   onClickCallback: PropTypes.func.isRequired,
+  currentPlayer: PropTypes.string.isRequired,
 };
 
 export default Board;
