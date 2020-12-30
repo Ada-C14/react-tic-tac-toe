@@ -57,9 +57,6 @@ const App = () => {
       checkForWinner(squareList);
     }
 
-
-    
-    
   };
   
   // Wave 2
@@ -104,6 +101,9 @@ const App = () => {
 
   const resetGame = () => {
     // Complete in Wave 4
+    setPlayer(PLAYER_1);
+    setWinner(null);
+    setSquares(generateSquares());
   }
 
   return (
@@ -111,7 +111,7 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         <h2>{winner ? `Winner is ${winner}` : `Current Player is ${player}`}</h2>
-        <button>Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
         <Board squares={squares} onClickCallback={onClickCallback} player={player}/>
