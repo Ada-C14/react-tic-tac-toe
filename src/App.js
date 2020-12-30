@@ -47,9 +47,9 @@ const App = () => {
         if (currentSquare.id === updatedSquare.id) {
           if (currentSquare.value !== '') { break; }
           if (playCount % 2 === 0) {
-            currentSquare.value = 'X'
+            currentSquare.value = 'x'
           } else {
-            currentSquare.value = 'O'
+            currentSquare.value = 'o'
           }
           setPlayCount(playCount + 1)
         }
