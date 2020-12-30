@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -32,34 +32,47 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [player, setCurrentPlayer] = useState(PLAYER_1)
 
-  const updateCurrentPlayer = (updatedCurrentPlayer) => {
+  // const updateCurrentPlayer = (updatedCurrentPlayer) => {
 
-    if (player === PLAYER_1) {
-      updatedCurrentPlayer = PLAYER_2;
-    } else {
-      updatedCurrentPlayer = PLAYER_1;
-    }
+  //   if (player === PLAYER_1) {
+  //     updatedCurrentPlayer = PLAYER_2;
+  //   } else {
+  //     updatedCurrentPlayer = PLAYER_1;
+  //   }
 
-    setCurrentPlayer(updatedCurrentPlayer);
-  }
+  //   setCurrentPlayer(updatedCurrentPlayer);
+  // }
 
   const updateSquare = (updatedSquare) => {
+    const updateCurrentPlayer = (updatedCurrentPlayer) => {
+
+      if (player === PLAYER_1) {
+        updatedCurrentPlayer = PLAYER_2;
+      } else {
+        updatedCurrentPlayer = PLAYER_1;
+      }
+  
+      setCurrentPlayer(updatedCurrentPlayer);
+    };
+
     const squaresNew = [];
     for (let row = 0; row < 3; row += 1) {
       squaresNew.push([]);
       for (let col = 0; col < 3; col += 1) {
-        if (squares.id === updatedSquare.id) {
+        if (squares[row][col].id === updatedSquare) {
           squaresNew[row].push({
-            id: updatedSquare.id,
-            value: updatedSquare.value,
+            id: updatedSquare,
+            value: player,
           });
         } else {
-          squaresNew[row].push(squares);
+          squaresNew[row].push(squares[row][col]);
         };
       }
     };
-
+    
+    setCurrentPlayer(updateCurrentPlayer);
     setSquares(squaresNew);
+    console.log(player)
   }
   // Wave 2
   // You will need to create a method to change the square 
@@ -92,10 +105,11 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onUpdateSquare={updateSquare} value={updateCurrentPlayer}/>
+        <Board squares={squares} onClickCallback={updateSquare}/>
       </main>
     </div>
   );
+
 }
 
 export default App;
