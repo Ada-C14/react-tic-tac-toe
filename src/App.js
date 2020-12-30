@@ -36,74 +36,43 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-<<<<<<< HEAD
-  // const fillSquare = (squares, id) => {
 
-  //   const changePlayer = () => setCurrentPlayer(!currentPlayer);
-
-    
-
-  //   if (squares.atIndex(props.id) !== '') {
-  //     return;
-  //   } else {
-      
-  //   }
-  //   let i = 0;
-  //   let j = 0;
+  // const updateSquares = (id) => {
+  //   const updated = [...squares]
+  //   let r = 0;
+  //   let c = 0;
   //   do {
   //     do {
-  //       if (j === props.id) {
+  //       if (squares[r][c].id === id && squares[r][c].value === '') {
   //         // set square to value of currentPlayer
+  //         squares[r][c].value = currentPlayer
+  //         if (currentPlayer === PLAYER_1) {
+  //           setCurrentPlayer(PLAYER_2)
+  //         } else {
+  //           setCurrentPlayer(PLAYER_1)
+  //         }
+  //       } else if (squares[r][c].id === id && squares[r][c].value !== '') {
+  //         return;
   //       }
-  //     } while (j < 3)
-
-  //   } while (i < 3)
-  //   // if (currentPlayer === PLAYER_1) {
-  //   //   currentPlayer = PLAYER_2
-  //   // } else {
-  //   //   currentPlayer = PLAYER_1
-  //   // }
-  //   //need id of clocked on square
-  //   //change value of sqaure
-  //   //change player
-  //   // if square is false, if square !== '' cant be clicked on
-  //   return (
-  //     <button onClick={changePlayer}></button>
-  //   );
-  // }
-  const updateSquares = (id) => {
-    const updated = [...squares]
-    let r = 0;
-    let c = 0;
-    do {
-      do {
-        if (squares[r][c].id === id && squares[r][c].value === '') {
-          // set square to value of currentPlayer
-          squares[r][c].value = currentPlayer
-          if (currentPlayer === PLAYER_1) {
-            setCurrentPlayer(PLAYER_2)
-          } else {
-            setCurrentPlayer(PLAYER_1)
-          }
-        } else if (squares[r][c].id === id && squares[r][c].value !== '') {
-          return;
-        }
-        c += 1
-      } while (c < 3)
-      r += 1
-      c = 0
-    } while (r < 3)
-    setSquares(updated)
-=======
+  //       c += 1
+  //     } while (c < 3)
+  //     r += 1
+  //     c = 0
+  //   } while (r < 3)
+  //   setSquares(updated)
+  // } 
  
   const changeSquareUsingSetSquares = (id) => {
     let foundSquare = squares.flat().find(square => square.id === id);
-    foundSquare.value = currentPlayer;
+    if (foundSquare.value === '') {
+      foundSquare.value = currentPlayer;
+    } else {
+      return;
+    }
     setSquares(squares);
 
     let nextPlayer = currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1;
     setCurrentPlayer(nextPlayer);
->>>>>>> 1879c912760e764ee1109e0e187c1d4b2bc59b94
   }
 
     const checkForWinner = () => {
@@ -133,11 +102,7 @@ const App = () => {
         <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
-<<<<<<< HEAD
-        <Board squares={squares} onClickCallback={updateSquares} />
-=======
         <Board squares={squares} onClickCallback={changeSquareUsingSetSquares}/>
->>>>>>> 1879c912760e764ee1109e0e187c1d4b2bc59b94
       </main>
     </div>
   );
