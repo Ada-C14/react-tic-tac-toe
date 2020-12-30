@@ -32,7 +32,6 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(true);
   const [winner, setWinner] = useState('');
-  const [gameOver, setGameOver] = useState(false)
 
   const onClickCallback = (updatedSquare) => {
     let updatedBoard = [];
