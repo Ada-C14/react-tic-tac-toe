@@ -42,7 +42,6 @@ const App = () => {
     for(let row of newSquares) {
       for(let square of row) {
         if (square.id === updatedSquare.id && square.value === '') {
-            // square = updatedSquare;
             square.value = player;          
         }
       }
