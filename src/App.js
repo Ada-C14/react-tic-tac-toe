@@ -28,33 +28,24 @@ const generateSquares = () => {
 const App = () => {
 
   // This starts state off as a 2D array of JS objects with empty value and unique ids.
-    // squares is a state variable that holds the current value of state 
-    // setSquaures is the function that updates the state 
   const [squares, setSquares] = useState(generateSquares());
-
-  const [currentPlayer, setPlayer] = useState(PLAYER_1); // default player is always player_1, 'X' 
-
-  const [currentWinner, setWinner] = useState(''); // default winner is empty 
+  const [currentPlayer, setPlayer] = useState(PLAYER_1);
+  const [currentWinner, setWinner] = useState(''); 
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-  //write out logic for the callback function 'onClickCallback' that is called when a square is clicked on
-  //pass onClickCallback through Board to each Square component. 
-  // 'onClickCallback' is the event handeler method that runs when event is triggered(user clicking on square) 
-
-  // when square is clicked, the callback function will be called and change it to X or O DEPENDING on the PLAYER
-  // - selectedSquareID is the square that was clicked on. Passed in as an argument in our square component.  
+  
   const onClickCallback = (selectedSquareId) => {
 
-  const updatedSquares = [...squares]; // shallow copy of squares 
+    const updatedSquares = [...squares]; 
 
     for (let row = 0; row < updatedSquares.length; row ++) {
       for (let col = 0; col < updatedSquares.length; col ++) {   
         if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner === '') {
-          updatedSquares[row][col].value = currentPlayer  // fills in value for blank square
-          currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
+          updatedSquares[row][col].value = currentPlayer  
+          currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);   
         }
       } 
     setSquares(updatedSquares)
@@ -103,7 +94,6 @@ const App = () => {
         <button onClick = {resetGame}> Reset Game </button>
       </header>
       <main>
-{/* App should pass to Board a 2D array of JavaScript objects  */}
         <Board squares={squares} onClickCallback = {onClickCallback} />
         console.log(onClickCallback)
       </main>
