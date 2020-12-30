@@ -51,7 +51,7 @@ const App = () => {
 
   for (let row = 0; row < updatedSquares.length; row ++) {
     for (let col = 0; col < updatedSquares.length; col ++) {   
-      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner == '') {
+      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner === '') {
           updatedSquares[row][col].value = currentPlayer  // fills in value for blank square
       } else {
           currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
@@ -100,7 +100,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is  {currentWinner} -- Fill in for wave 3 </h2>
+        <h2>Winner is {currentWinner} </h2>
         <button>Reset Game</button>
       </header>
       <main>
