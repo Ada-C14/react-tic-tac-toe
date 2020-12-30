@@ -32,6 +32,7 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
 
   const [player, setPlayer] = useState(PLAYER_1);
+  const [winner, setWinner] = useState("it's a tie!");
 
   /// const setSquares
 
@@ -75,10 +76,12 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+
   }
 
   const resetGame = () => {
     // Complete in Wave 4
+    window.location.reload();
   }
 
   return (
@@ -86,7 +89,7 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         <h2>The winner is ... -- Fill in for wave 3 </h2>
-        <button>Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
         <Board squares={squares} onClickCallback={onClickCallback} />
