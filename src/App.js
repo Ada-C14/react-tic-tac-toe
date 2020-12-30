@@ -33,17 +33,17 @@ const App = () => {
 
   // Wave 2
   const onClickCallback = (updatedSquare) => {
-    const students = [];
+    const squaresList = [];
 
-    squareList.forEach(square => {
+    squares.forEach(square => {
       if (square.value === '') {
-        squares.push(updatedSquare);
+        squaresList.push(updatedSquare);
       } else {
-        squares.push(square);
+        squaresList.push(square);
       }
     });
 
-    setSquares(squares);
+    setSquares(squaresList);
   };
 
   // You will need to create a method to change the square 
@@ -76,7 +76,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={clickCallback} />
+        <Board squares={squares} onClickCallback={onClickCallback} />
       </main>
     </div>
   );
