@@ -31,30 +31,30 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(PLAYER_1)
+  const [winner, setWinner] = useState(null)
   
 
   const onClickCallback = (updatedSquare) => {
-
-   
-
     const squareList = [];
-
-    squares.forEach((row, i) => {
-      squareList.push([]);
-      row.forEach(square => {
-        if (square.id === updatedSquare.id && square.value === '') {
-          squareList[i].push(updatedSquare); 
-          if (player === PLAYER_1) {
-            setPlayer(PLAYER_2);
-          } else if (player === PLAYER_2) {
-            setPlayer(PLAYER_1);
+      squares.forEach((row, i) => {
+        squareList.push([]);
+        row.forEach(square => {
+          if (square.id === updatedSquare.id && square.value === '') {
+            squareList[i].push(updatedSquare); 
+            if (player === PLAYER_1) {
+              setPlayer(PLAYER_2);
+            } else if (player === PLAYER_2) {
+              setPlayer(PLAYER_1);
+            }
+          } else {
+            squareList[i].push(square);
           }
-        } else {
-          squareList[i].push(square);
-        }
+        })
       })
-    })
-    setSquares(squareList);
+      setSquares(squareList);
+
+    checkForWinner(squareList);
+    
   };
   
   // Wave 2
@@ -63,7 +63,28 @@ const App = () => {
   //   Then pass it into the squares as a callback
 
 
-  const checkForWinner = () => {
+  const checkForWinner = (squares) => {
+    const flattenarray = [].concat(...squares);
+    
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (flattenarray[a].value && flattenarray[a].value === flattenarray[b].value && flattenarray[a].value === flattenarray[c].value) {
+        setWinner(flattenarray[a].value);
+        return true;
+      }
+    }
+    return null;
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -84,7 +105,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>{winner ? `Winner is ${winner}` : `Current Player is ${player}`}</h2>
         <button>Reset Game</button>
       </header>
       <main>
