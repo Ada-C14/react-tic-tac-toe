@@ -31,7 +31,8 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
-  const [winner, setWinner] = useState('')
+  const [winner, setWinner] = useState('');
+  const [count, setCount] = useState(0);
   
   // Wave 2
   // You will need to create a method to change the square 
@@ -48,6 +49,8 @@ const App = () => {
       if(square.value === '' && square.id === id){
         square.value = currentPlayer;
         UpdatedOneDimentionalArraySquares.push(square)
+
+        setCount(count + 1);
 
         if (currentPlayer === PLAYER_1) {
           setCurrentPlayer(PLAYER_2)
@@ -67,8 +70,6 @@ const App = () => {
     setSquares(newSquares);
     checkForWinner();
   }
-
-
 
   const checkForWinner = () => {
     // Complete in Wave 3
@@ -102,6 +103,17 @@ const App = () => {
 
   }
 
+  const status = () => {
+    if(winner === '' && count === 9 ){
+      return `It's a tie!`
+    }else if(winner !== '' ){
+      return `Winner is ${winner}`
+    }else{
+      return `The current player is ${currentPlayer}`
+    }
+  }
+
+
   const resetGame = () => {
     // Complete in Wave 4
   }
@@ -110,17 +122,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>{winner !== '' ? `The Winner is ${winner}` : `The current player is ${currentPlayer}`}</h2>
-        {/* <h2>
-          { if (winner === 'tie') {
-            "It's a tie !"
-          } else {
-            `The winner is ${winner}`
-          }
-          }
-        </h2>
-        {/* if it's winner == '' print it's a tie */}
-        {/* else console.log(`The winner is ${winner}`) */} 
+        <h2>{status()}</h2>
         <button>Reset Game</button>
       </header>
       <main>
