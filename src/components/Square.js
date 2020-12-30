@@ -9,8 +9,9 @@ const Square = (props) => {
   //  component when it's clicked on.
 
   return <button
+    id={props.id}
     className="square"
-    onCLick={() => props.onClickCallback(props.id)}
+    onClick={() => props.onClickCallback(props.id)}
   >
     {props.value}
   </button>
