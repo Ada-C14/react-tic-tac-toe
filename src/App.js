@@ -31,7 +31,8 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(true);
-  const [winner, setWinner] = useState();
+  const [winner, setWinner] = useState('');
+  const [gameOver, setGameOver] = useState(false)
 
   const onClickCallback = (updatedSquare) => {
     let updatedBoard = [];
@@ -44,7 +45,7 @@ const App = () => {
       updatedBoard.push(squares[row]);
     }
     setSquares(updatedBoard);
-    checkForWinner();
+    checkForWinner(updatedBoard);
   };
 
   function swapPlayer() {
@@ -52,21 +53,28 @@ const App = () => {
     return player;
   };
 
-  const checkForWinner = () => {
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
+  const checkForWinner = (squares) => {
+    // flatten the array of squares
+    const flatArray = [].concat(...squares);
+    // have a 2d array of combos to check
+    const winnerCombos = [[3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+
+    // if any produce winner, set winner
+    winnerCombos.forEach((combo) => {
+      if (flatArray[combo[0]].value !== '' && flatArray[combo[0]].value === flatArray[combo[1]].value && flatArray[combo[1]].value === flatArray[combo[2]].value) {
+        setWinner(flatArray[combo[0]].value);
+        return;
+      }
+    })
+
+    // if there are no empty sqaures, and winner is still '' then it's a tie, game is over
 
   };
 
   const resetGame = () => {
-    // Complete in Wave 4
+    setSquares(generateSquares);
+    setPlayer(true);
+    setWinner('');
   };
 
   return (

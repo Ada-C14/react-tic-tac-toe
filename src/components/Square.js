@@ -6,7 +6,9 @@ import './Square.css'
 const Square = (props) => {
 
   const clickSquare = () => {
-    props.onClickCallback(props.id);
+    if (props.value === '') {
+      props.onClickCallback(props.id);
+    };
   };
   return <button
     className="square"
