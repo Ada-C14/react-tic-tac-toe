@@ -36,39 +36,63 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-  const fillSquare = (squares, props) => {
+  // const fillSquare = (squares, id) => {
 
-    const changePlayer = () => setCurrentPlayer(!currentPlayer);
+  //   const changePlayer = () => setCurrentPlayer(!currentPlayer);
 
     
 
-    if (squares.atIndex(props.id) !== '') {
-      return;
-    } else {
+  //   if (squares.atIndex(props.id) !== '') {
+  //     return;
+  //   } else {
       
-    }
-    let i = 0;
-    let j = 0;
+  //   }
+  //   let i = 0;
+  //   let j = 0;
+  //   do {
+  //     do {
+  //       if (j === props.id) {
+  //         // set square to value of currentPlayer
+  //       }
+  //     } while (j < 3)
+
+  //   } while (i < 3)
+  //   // if (currentPlayer === PLAYER_1) {
+  //   //   currentPlayer = PLAYER_2
+  //   // } else {
+  //   //   currentPlayer = PLAYER_1
+  //   // }
+  //   //need id of clocked on square
+  //   //change value of sqaure
+  //   //change player
+  //   // if square is false, if square !== '' cant be clicked on
+  //   return (
+  //     <button onClick={changePlayer}></button>
+  //   );
+  // }
+  const updateSquares = (id) => {
+    const updated = [...squares]
+    let r = 0;
+    let c = 0;
     do {
       do {
-        if (j === props.id) {
+        if (squares[r][c].id === id && squares[r][c].value === '') {
           // set square to value of currentPlayer
+          squares[r][c].value = currentPlayer
+          if (currentPlayer === PLAYER_1) {
+            setCurrentPlayer(PLAYER_2)
+          } else {
+            setCurrentPlayer(PLAYER_1)
+          }
+        } else if (squares[r][c].id === id && squares[r][c].value !== '') {
+          return;
         }
-      } while (j < 3)
-
-    } while (i < 3)
-    // if (currentPlayer === PLAYER_1) {
-    //   currentPlayer = PLAYER_2
-    // } else {
-    //   currentPlayer = PLAYER_1
-    // }
-    //need id of clocked on square
-    //change value of sqaure
-    //change player
-    // if square is false, if square !== '' cant be clicked on
-    return (
-      <button onClick={changePlayer}></button>
-    );
+        c += 1
+      } while (c < 3)
+      r += 1
+      c = 0
+    } while (r < 3)
+    setSquares(updated)
   }
 
 
@@ -98,7 +122,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={updateSquares} />
       </main>
     </div>
   );
