@@ -37,28 +37,20 @@ const App = () => {
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
   const updateSquare = (updatedSquare) => {
-    const newSquares = [];
+    const newSquares = [...squares]
 
-    squares.forEach((row, i) => {
-      newSquares.push([]);
-      row.forEach(square => {
-
-        if (square.id === updatedSquare.id) {
-          newSquares[i].push(updatedSquare);
-
-          if (player === PLAYER_1) {
-            setPlayer(PLAYER_2);
-          } else if (player === PLAYER_2) {
-            setPlayer(PLAYER_1);
-          }
-
-      } else {
-        newSquares[i].push(square);
+    for(let row of newSquares) {
+      for(let square of row) {
+        if (square.id === updatedSquare.id && square.value === '') {
+            // square = updatedSquare;
+            square.value = player;          
+        }
       }
-      })
-    });
+    };
+  
+    setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
 
-      setSquares(newSquares);
+    setSquares(newSquares);
   }
 
   const checkForWinner = () => {
