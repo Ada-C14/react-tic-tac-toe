@@ -5,6 +5,8 @@ import Board from './components/Board';
 
 const PLAYER_1 = 'x';
 const PLAYER_2 = 'o';
+let count = 0
+let winner = ''
 
 const generateSquares = () => {
   const squares = [];
@@ -28,7 +30,7 @@ const generateSquares = () => {
 const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(PLAYER_1);
-  const [winner, setWinner] = useState(null);
+  // const [winner, setWinner] = useState(null);
 
   // Wave 2
   const updateSquare = (updatedSquare) => {
@@ -36,7 +38,8 @@ const App = () => {
 
     for(let row of newSquares) {
       for(let square of row) {
-        if (square.id === updatedSquare.id && square.value === '' && winner === null) {
+        if (square.id === updatedSquare.id && square.value === '') {
+          count++
             square.value = player;          
         }
       }
@@ -46,7 +49,9 @@ const App = () => {
 
     setSquares(newSquares);
 
-    setWinner(checkForWinner());
+    if (count > 4) {
+    checkForWinner();
+    }
     
   }
 
@@ -55,7 +60,7 @@ const App = () => {
 
     const winPossibilities = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     let allSquares = squares.flat()
-
+    //[0,1,2,3,4,5,6,7,8]
     winPossibilities.forEach((possibility) => {
       let rowOfThree = []
       possibility.forEach((i) => {
@@ -63,17 +68,17 @@ const App = () => {
       })
       if (rowOfThree.every(obj => obj.value === 'x')) {
         console.log('Winner is x');
-        return PLAYER_1
+        winner = PLAYER_1
         
       } else if (rowOfThree.every(obj => obj.value === 'o')) {
         console.log('Winner is o');
-        return PLAYER_2
+        winner = PLAYER_2
       } else if (allSquares.every(obj => obj.value !== '')) {
         console.log('Tie');
-        return null
+        winner = 'tie'
       }
     })
-
+      return winner;
   }
 
   const resetGame = () => {
