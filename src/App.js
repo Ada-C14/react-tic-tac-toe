@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -30,12 +30,13 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  
-  const updateSquare = (updatedSquare) => {
-    console.log(updatedSquare)
+  const [player, setPlayer] = useState(PLAYER_1)
+  // const players = s
+  const updateSquare = (updatedSquareId) => {
+    console.log(updatedSquareId)
     console.log('hiiiiii!!!')
     const newSquares = [];
-
+    
     //for of loop
     //need to make new set of tic tac toe data
     //can pass to set squares
@@ -44,15 +45,36 @@ const App = () => {
     //can spread object into new object
     //newSquare = {...square}
     //once you have copy, can safely make changes to copy (x's o's)
-    squares.forEach((square) => {
-      if (square.id === updatedSquare.id) {
-        squares.push(updatedSquare);
-      } else {
-        squares.push(square);
+    for (const row of squares) { 
+      const newRow = [];
+      newSquares.push(newRow);
+      for (const square of row) {
+        if (square.id === updatedSquareId && square.value === '') {
+          const updatedSquare = {
+            id: updatedSquareId,
+            value: player
+          }
+          newRow.push(updatedSquare);
+          const newPlayer = PLAYER_1 === player ? PLAYER_2 : PLAYER_1;
+          setPlayer(newPlayer);
+
+        } else {
+          newRow.push(square);
+      
+        }
       }
-    });
-    setSquares(squares)
   }
+    setSquares(newSquares)
+  }
+  //   squares.forEach((square) => {
+  //     if (square.id === updatedSquare.id) {
+  //       squares.push(updatedSquare);
+  //     } else {
+  //       squares.push(square);
+  //     }
+  //   });
+  //   setSquares(squares)
+  // }
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -75,7 +97,8 @@ const App = () => {
   const resetGame = () => {
     // Complete in Wave 4
   }
-
+  console.log('****')
+console.log(squares)
   return (
     <div className="App">
       <header className="App-header">
@@ -84,6 +107,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
+        
         <Board onClickCallback={updateSquare} squares={squares} />
         
       </main>
