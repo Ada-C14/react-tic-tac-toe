@@ -5,6 +5,11 @@ import PropTypes from 'prop-types';
 
 
 const generateSquareComponents = (squares, onClickCallback) => {
+  // Complete this for Wave 1
+  // squares is a 2D Array, but 
+  //  you need to return a 1D array
+  //  of square components
+
   const squaresArray = []
   console.log(squares)
   
@@ -15,6 +20,8 @@ const generateSquareComponents = (squares, onClickCallback) => {
   }
   return squaresArray;
 }
+
+// maybe could refactor above to use deconstructor and map?
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback);
