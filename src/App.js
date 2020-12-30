@@ -29,12 +29,37 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
-  const [squares, setSquares] = useState(generateSquares());
+  const [squareList, setSquares] = useState(generateSquares());
+  const [playCount, setPlayCount] = useState(0)
+  const [winner, setWinner] = useState('')
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+
+  const callback = (updatedSquare) => {
+   
+    const squares = [...squareList]
+
+    for (let j = 0; j < 3; j++) {
+      for (let i = 0; i < 3; i++) {
+        let currentSquare = squares[j][i]
+        if (currentSquare.id === updatedSquare.id) {
+          if (currentSquare.value !== '') { break; }
+          if (playCount % 2 === 0) {
+            currentSquare.value = 'x'
+          } else {
+            currentSquare.value = 'o'
+          }
+          setPlayCount(playCount + 1)
+          checkForWinner()
+        }
+      }
+    }
+    setSquares(squares)
+}
+  
 
 
   const checkForWinner = () => {
@@ -48,6 +73,25 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+    const winningConditions = [
+      [squareList[0][0].value, squareList[0][1].value, squareList[0][2].value],
+      [squareList[1][0].value, squareList[1][1].value, squareList[1][2].value],
+      [squareList[2][0].value, squareList[2][1].value, squareList[2][2].value],
+      [squareList[0][0].value, squareList[1][0].value, squareList[2][0].value],
+      [squareList[0][1].value, squareList[1][1].value, squareList[2][1].value],
+      [squareList[0][2].value, squareList[1][2].value, squareList[2][2].value],
+      [squareList[0][0].value, squareList[1][1].value, squareList[2][2].value],
+      [squareList[0][2].value, squareList[1][1].value, squareList[2][0].value]
+    ]
+
+    for (let i = 0; i < winningConditions.length; i++) {
+      if ((winningConditions[i][0] === winningConditions[i][1]) && (winningConditions[i][1] === winningConditions[i][2])){
+        // const winner = winningConditions[i][0];
+        setWinner(winningConditions[i][0])
+      }
+    }
+
+
   }
 
   const resetGame = () => {
@@ -58,11 +102,11 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>The winner is {winner} </h2>
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squareList} onClickCallback={callback} />
       </main>
     </div>
   );
