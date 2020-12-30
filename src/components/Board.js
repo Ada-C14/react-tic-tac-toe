@@ -14,7 +14,11 @@ const generateSquareComponents = (squares, onClickCallback) => {
   return squaresList.map( (square, i) => {
     return(
       <li key={i}>
-        <Square id = {square.id} value = {square.value}/>
+        <Square 
+        id = {square.id} 
+        value = {square.value}
+        onClickCallback = {onClickCallback}
+        />
       </li>
     )
   })

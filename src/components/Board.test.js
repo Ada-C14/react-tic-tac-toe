@@ -82,7 +82,7 @@ describe('Wave 1: Board', () => {
     expect(buttons.length).toEqual(9);
   });
 });
-xdescribe('Wave 2: Board', () => {
+describe('Wave 2: Board', () => {
   describe('button click callbacks', () => {
     test.skip('that the callback is called for the 1st button', () => {
       // Arrange
