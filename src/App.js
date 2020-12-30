@@ -31,9 +31,20 @@ const App = () => {
 
   const onClickCallback = (event) => {
     let newSquares = [];
-    for (let row = 0; row < squares.length)
+    for (let row = 0; row < squares.length; row += 1) {
+      for (let column = 0; column < squares.length; column += 1) {
+        squares[row][column]['value'] = (switchPlayer() ? PLAYER_2 : PLAYER_1);
+      } 
+    }
+    newSquares.push(squares[row]);
   }
-
+setSquares(newSquares);
+} // => change/ remove bracket
+//toggle players
+function switchPlayer() {
+  changeCurrent(!current);
+  return current;
+};
   const checkForWinner = () => {
   
   
