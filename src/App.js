@@ -33,10 +33,8 @@ const App = () => {
   const [player, setPlayer] = useState(PLAYER_1);
   const [winner, setWinner] = useState(null);
   
-  // const players = s
   const updateSquare = (updatedSquareId) => {
-    // console.log(updatedSquareId)
-    // console.log('hiiiiii!!!')
+  
     const newSquares = [];
     
     for (const row of squares) { 
@@ -62,20 +60,7 @@ const App = () => {
   setSquares(newSquares)
   }
  
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
-
-
   const checkForWinner = (squares) => {
-  
-    //helper function to look up tiles by id
-    //get tile with id 0, etc. 
-    //helper = (squares, id)
-    //modify winning moves to reflect 2 dimensional coordinates
-
-    //taken from: https://reactjs.org/tutorial/tutorial.html#declaring-a-winner
     const winningCombos = [
       [0, 1, 2],
       [3, 4, 5],
@@ -100,16 +85,6 @@ const App = () => {
       }
     }
   }
-    
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
 
   const resetGame = () => {
     // Complete in Wave 4
