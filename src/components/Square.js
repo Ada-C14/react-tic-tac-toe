@@ -6,13 +6,6 @@ import './Square.css'
 const Square = (props) => {
 
   const onButtonClick = () => {
-    // const updatedSquare = {
-    //   id: props.id,
-      // value: props.value,
-      // key: props.id,
-      // onClickCallback: props.onClickCallback
-    // }
-
     props.onClickCallback(props.id);
   }
 
@@ -20,7 +13,6 @@ const Square = (props) => {
     className="square"
     onClick={onButtonClick}
   >
-    
     {props.value}
   </button>
 }
