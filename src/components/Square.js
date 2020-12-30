@@ -1,28 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './Square.css'
 
 const Square = (props) => {
-  // For Wave 1 enable this 
-  //  Component to alert a parent 
-  //  component when it's clicked on.
-
-  const [value, setValue] = useState('');
-  
   const onSquareClick = () => {
     console.log(props.value);
     console.log(props.id);
     console.log(props.currentPlayer);
-    // If the square is blank
-    if (props.value === '') {
-      // Set value to current player
-      const value = props.currentPlayer;
-    }
 
     const updatedSquare = {
       id: props.id,
-      value: value,
+      value: props.value === '' ? props.currentPlayer : props.value
     }
 
     props.onClickCallback(updatedSquare);

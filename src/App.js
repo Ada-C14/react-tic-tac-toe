@@ -47,7 +47,7 @@ const App = () => {
   //   Then pass it into the squares as a callback
 
   const onClickCallback = (updatedSquare) => {
-    console.log(updatedSquare);
+    // console.log(updatedSquare);
     // Check if square has value
 
     // If it has value, return without doing anything
@@ -55,21 +55,25 @@ const App = () => {
     // Set value of square according to current player
 
     // Toggle current player
-    let newSquaresArray = [];
+    //Creating 2D array
+    let newSquaresArray = new Array(3);
+      for (let i = 0; i < newSquaresArray.length; i++) {
+        newSquaresArray[i] = new Array(3);
+    }
 
-    squares.forEach((square) => {
-      
-      if (square.id === updatedSquare.id) {
-        newSquaresArray.push(updatedSquare)
+    for (let row in squares) {
+      for (let column in squares[row]) {
+        if (squares[row][column].id === updatedSquare.id) {
+          newSquaresArray[row].push(updatedSquare)
+          switchPlayer();
+        }
+        else {
+          newSquaresArray[row].push(squares[row][column])
+        }
       }
-      else {
-        newSquaresArray.push(square)
-      }
-    });
+    };
     setSquares(newSquaresArray);
-    switchPlayer();
   }
-
 
   const checkForWinner = () => {
     // Complete in Wave 3
@@ -87,6 +91,8 @@ const App = () => {
   const resetGame = () => {
     // Complete in Wave 4
   }
+
+  console.log(squares);
 
   return (
     <div className="App">

@@ -14,7 +14,8 @@ const generateSquareComponents = (squares, onClickCallback, currentPlayer) => {
 
   squares.forEach((row) => {
     row.forEach((square) => {
-      squareArray.push(<Square
+      squareArray.push(
+      <Square
         id={square.id}
         value={square.value}
         onClickCallback={onClickCallback}
