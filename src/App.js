@@ -31,13 +31,14 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(true);
-  const [winner, setWinner] = useState();
+  const [winner, setWinner] = useState('');
+  const [gameOver, setGameOver] = useState(false)
 
   const onClickCallback = (updatedSquare) => {
     let updatedBoard = [];
     for (let row = 0; row < squares.length; row++) {
       for (let col = 0; col < squares.length; col++) {
-        if (updatedSquare === squares[row][col].id) {
+        if (updatedSquare === squares[row][col].id && squares[row][col].value === '') {
           squares[row][col]['value'] = (swapPlayer() ? PLAYER_1 : PLAYER_2);
         }
       }
@@ -53,27 +54,46 @@ const App = () => {
   };
 
   const checkForWinner = () => {
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
+    // if the winner is already delcared, return (don't assign new winner)
+    if (winner !== '') return;
+    
+    // flatten the array of squares
+    const flatArray = [].concat(...squares);
+    // have a 2d array of combos to check
+    const winnerCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
+    // if any produce winner, set winner
+    winnerCombos.forEach((combo) => {
+      if (flatArray[combo[0]].value !== '' && flatArray[combo[0]].value === flatArray[combo[1]].value && flatArray[combo[1]].value === flatArray[combo[2]].value) {
+        setWinner(flatArray[combo[0]].value);
+        return;
+      };
+    })
+
+    // if there are no empty sqaures, then it's a tie, game is over
+    let sqauresToPlay = 0;
+    flatArray.forEach((square) => {
+      if (square.value === '') {
+        sqauresToPlay += 1
+      };
+    });
+
+    if (sqauresToPlay === 0) {
+      setWinner('TIED! GAME OVER');
+    };
   };
 
   const resetGame = () => {
-    // Complete in Wave 4
+    setSquares(generateSquares);
+    setPlayer(true);
+    setWinner('');
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is {winner}</h2>
+        <h2>Winner is {winner}</h2>
         <button onClick={resetGame}> Reset Game</button>
       </header>
       <main>
