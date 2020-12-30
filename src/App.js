@@ -39,71 +39,23 @@ const App = () => {
 
   const callback = (updatedSquare) => {
    
-    // const squares = [];
-
-    // squareList.forEach((square) => {
-    //   // if (square.id === updatedStudent.id) {
-    //   //   students.push(updatedStudent);
-    //   // } else {
-    //   //   students.push(student);
-    //   // }
-
-    //   if (playCount % 2 === 0) {
-    //     square.value = 'X'
-    //   } else {
-    //     square.value = 'O'
-    //   }
-
-    //   if (square.id === )
-
-
-    // });
-
-    // setSquares(squares);
     const squares = [...squareList]
 
-  //   if (updatedSquare.id === 0) {
-  //     if (playCount % 2 === 0 ) {
-  //       squares[0][0].value = 'X'
-  //     } else {
-  //       squares[0][0].value = 'O'
-  //     }
-  //     setPlayCount(playCount + 1)
-  //   } else if (updatedSquare.id === 1) {
-  //     if (playCount % 2 === 0 ) {
-  //       squares[0][1].value = 'X'
-  //     } else {
-  //       squares[0][1].value = 'O'
-  //     }
-  //     setPlayCount(playCount + 1)
-  //   } else if (updatedSquare.id === 2) {
-  //     if (playCount % 2 === 0 ) {
-  //       squares[0][2].value = 'X'
-  //     } else {
-  //       squares[0][2].value = 'O'
-  //     }
-  //     setPlayCount(playCount + 1)
-  //   } else if (updatedSquare.id === 3) {
-  //     if (playCount % 2 === 0 ) {
-  //       squares[1][0].value = 'X'
-  //     } else {
-  //       squares[1][0].value = 'O'
-  //     }
-  //     setPlayCount(playCount + 1)
-  // }
-  for (let j = 0; j < 3; j++) {
-    for (let i = 0; i < 3; i++) {
-      let currentSquare = squares[j][i]
-      if (currentSquare.id === updatedSquare.id) {
-        if (playCount % 2 === 0 ) {
-          currentSquare.value = 'X'
-        } else {
-          currentSquare.value = 'O'
+    for (let j = 0; j < 3; j++) {
+      for (let i = 0; i < 3; i++) {
+        let currentSquare = squares[j][i]
+        if (currentSquare.id === updatedSquare.id) {
+          if (currentSquare.value !== '') { break; }
+          if (playCount % 2 === 0) {
+            currentSquare.value = 'X'
+          } else {
+            currentSquare.value = 'O'
+          }
+          setPlayCount(playCount + 1)
         }
-        setPlayCount(playCount + 1)
       }
     }
-  }
+    setSquares(squares)
 }
   
 
