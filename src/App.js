@@ -31,6 +31,21 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
 
+  const updateSquare = (updatedSquare) => {
+    const squaresHoldingArray = [];
+
+    squares.forEach((square) => {
+      if (square.id === updatedSquare.id) {
+        squaresHoldingArray.push(updatedSquare);
+      } else {
+        squaresHoldingArray.push(square);
+      }
+    });
+
+    setSquares(squaresHoldingArray);
+  }
+
+
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -62,7 +77,8 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={updateSquare}/>
+        {/* Beginning of the chain reaction where we hand the updateSquare method in as a prop to Board */}
       </main>
     </div>
   );
