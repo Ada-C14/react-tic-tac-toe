@@ -12,14 +12,14 @@ const generateSquareComponents = (squares, onClickCallback) => {
   const squaresList = squares.flat();
   // let squaresFlat = [];
   // squaresFlat.push(...squares);
-  return squaresList.map((square) => {
-    return <Square 
+  return squaresList.map(square =>
+    <Square 
       id={square.id}
       value={square.value}
       onClickCallback={onClickCallback}
       key={square.id}
     />
-  });
+  );
 }
 
 const Board = ({ squares, onClickCallback }) => {

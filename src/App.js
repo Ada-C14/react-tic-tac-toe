@@ -36,6 +36,7 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+<<<<<<< HEAD
   // const fillSquare = (squares, id) => {
 
   //   const changePlayer = () => setCurrentPlayer(!currentPlayer);
@@ -93,10 +94,19 @@ const App = () => {
       c = 0
     } while (r < 3)
     setSquares(updated)
+=======
+ 
+  const changeSquareUsingSetSquares = (id) => {
+    let foundSquare = squares.flat().find(square => square.id === id);
+    foundSquare.value = currentPlayer;
+    setSquares(squares);
+
+    let nextPlayer = currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1;
+    setCurrentPlayer(nextPlayer);
+>>>>>>> 1879c912760e764ee1109e0e187c1d4b2bc59b94
   }
 
-
-  const checkForWinner = () => {
+    const checkForWinner = () => {
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -110,7 +120,8 @@ const App = () => {
   }
 
   const resetGame = () => {
-    // Complete in Wave 4
+    setSquares(generateSquares);
+    setCurrentPlayer(PLAYER_1);
   }
 
   return (
@@ -119,10 +130,14 @@ const App = () => {
         <h1>React Tic Tac Toe</h1>
         {/* <h2>The winner is ... -- Fill in for wave 3 </h2> */}
         <h2>{currentPlayer}</h2>
-        <button>Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
+<<<<<<< HEAD
         <Board squares={squares} onClickCallback={updateSquares} />
+=======
+        <Board squares={squares} onClickCallback={changeSquareUsingSetSquares}/>
+>>>>>>> 1879c912760e764ee1109e0e187c1d4b2bc59b94
       </main>
     </div>
   );
