@@ -36,6 +36,7 @@ const App = () => {
 
   const onClickCallback = (updatedSquare) => {
     const squareList = [];
+    if (winner === null) {
       squares.forEach((row, i) => {
         squareList.push([]);
         row.forEach(square => {
@@ -53,7 +54,11 @@ const App = () => {
       })
       setSquares(squareList);
 
-    checkForWinner(squareList);
+      checkForWinner(squareList);
+    }
+
+
+    
     
   };
   
