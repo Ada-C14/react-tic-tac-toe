@@ -32,6 +32,20 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
 
   // Wave 2
+  const onClickCallback = (updatedSquare) => {
+    const students = [];
+
+    squareList.forEach(square => {
+      if (square.value === '') {
+        squares.push(updatedSquare);
+      } else {
+        squares.push(square);
+      }
+    });
+
+    setSquares(squares);
+  };
+
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
@@ -62,7 +76,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={clickCallback} />
       </main>
     </div>
   );
