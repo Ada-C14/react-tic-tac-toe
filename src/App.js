@@ -46,18 +46,16 @@ const App = () => {
     squares.forEach((row) => {
       newSquares.push([]);
       row.forEach((square) => {
-        if (square.id === updatedSquare.id) {
+        if (square.id === updatedSquare.id && square.value === '') {
           newSquares[i].push(updatedSquare);
+          changePlayer();
         } else {
           newSquares[i].push(square);
         }
-
       });
       i+= 1
     });
     setSquares(newSquares);
-
-    changePlayer();
   }
    
 
