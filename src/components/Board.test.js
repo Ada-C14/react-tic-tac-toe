@@ -81,7 +81,52 @@ describe('Wave 1: Board', () => {
     const buttons = container.querySelectorAll('.grid button');
     expect(buttons.length).toEqual(9);
   });
-
+});
+describe('Wave 2: Board', () => {
+  const SAMPLE_BOARD = [
+    [
+      {
+        value: '',
+        id: 0,
+      },
+      {
+        value: '',
+        id: 1,
+      },
+      {
+        value: '',
+        id: 2,
+      },
+    ],
+    [
+      {
+        value: '',
+        id: 3,
+      },
+      {
+        value: '',
+        id: 4,
+      },
+      {
+        value: '',
+        id: 5,
+      },
+    ],
+    [
+      {
+        value: '',
+        id: 6,
+      },
+      {
+        value: '',
+        id: 7,
+      },
+      {
+        value: '',
+        id: 8,
+      },
+    ],    
+  ];
   describe('button click callbacks', () => {
     test('that the callback is called for the 1st button', () => {
       // Arrange
