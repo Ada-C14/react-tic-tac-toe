@@ -14,7 +14,7 @@ describe('App', () => {
     expect(buttons[buttonIndex].innerHTML).toEqual(expectedResult);
   }
 
-  describe.skip('Wave 2: clicking on squares and rendering App', () => {
+  describe('Wave 2: clicking on squares and rendering App', () => {
 
   test('App renders with a board of 9 empty buttons', () => {
     // Arrange-Act - Render the app
@@ -222,7 +222,7 @@ describe('App', () => {
   });
 
 
-  describe('Prints "Winner is o" when o wins', () => {
+  describe.skip('Prints "Winner is o" when o wins', () => {
     test('that a winner will be identified when 3 os get in a row across the top', () => {
       // Arrange
       const { container } = render(<App />);

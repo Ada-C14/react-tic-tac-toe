@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -30,36 +30,49 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  // let currentPlayer = PLAYER_1;
-  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
+  const [player, setCurrentPlayer] = useState(PLAYER_1)
 
-  const onClickCallback = (updatedSquareId) => {
-    console.log('Current player before: ', currentPlayer);
+  // const updateCurrentPlayer = (updatedCurrentPlayer) => {
+
+  //   if (player === PLAYER_1) {
+  //     updatedCurrentPlayer = PLAYER_2;
+  //   } else {
+  //     updatedCurrentPlayer = PLAYER_1;
+  //   }
+
+  //   setCurrentPlayer(updatedCurrentPlayer);
+  // }
+
+  const updateSquare = (updatedSquare) => {
+    const updateCurrentPlayer = (updatedCurrentPlayer) => {
+
+      if (player === PLAYER_1) {
+        updatedCurrentPlayer = PLAYER_2;
+      } else {
+        updatedCurrentPlayer = PLAYER_1;
+      }
+  
+      setCurrentPlayer(updatedCurrentPlayer);
+    };
 
     const squaresNew = [];
     for (let row = 0; row < 3; row += 1) {
       squaresNew.push([]);
       for (let col = 0; col < 3; col += 1) {
-        if (squares[row][col].id === updatedSquareId) {
+        if (squares[row][col].id === updatedSquare) {
           squaresNew[row].push({
-            id: updatedSquareId,
-            value: currentPlayer,
+            id: updatedSquare,
+            value: player,
           });
         } else {
           squaresNew[row].push(squares[row][col]);
         };
       }
     };
-
-    let newPlayer;
-    if (currentPlayer === PLAYER_1) {
-      newPlayer = PLAYER_2;
-    } else {
-      newPlayer = PLAYER_1;
-    };
-
-    setCurrentPlayer(newPlayer);
+    
+    setCurrentPlayer(updateCurrentPlayer);
     setSquares(squaresNew);
+    console.log(player)
   }
   // Wave 2
   // You will need to create a method to change the square 
@@ -92,10 +105,11 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={onClickCallback}/>
+        <Board squares={squares} onClickCallback={updateSquare}/>
       </main>
     </div>
   );
+
 }
 
 export default App;
