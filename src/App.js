@@ -49,21 +49,17 @@ const App = () => {
 
   const updatedSquares = [...squares]; // shallow copy of squares 
 
-  for (let row = 0; row < updatedSquares.length; row ++) {
-    for (let col = 0; col < updatedSquares.length; col ++) {   
-      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner === '') {
+    for (let row = 0; row < updatedSquares.length; row ++) {
+      for (let col = 0; col < updatedSquares.length; col ++) {   
+        if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner === '') {
           updatedSquares[row][col].value = currentPlayer  // fills in value for blank square
-      } else {
           currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
-          }
-          
         }
-      }
-    
-  setSquares(updatedSquares)
-  checkForWinner();
+      } 
+    setSquares(updatedSquares)
+    checkForWinner();
+    }
   }
-  
 
   const checkForWinner = () => {
     // Complete in Wave 3
