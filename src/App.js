@@ -102,10 +102,9 @@ const App = () => {
         }
       })
 
-      return isTie;
   })
 
-  return true;
+  return isTie;
 }
 
   const resetGame = () => {
