@@ -30,29 +30,35 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  let currentPlayer = PLAYER_1;
+  // let currentPlayer = PLAYER_1;
+  const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
 
-  const onClickCallback = (updatedSquare) => {
+  const onClickCallback = (updatedSquareId) => {
+    console.log('Current player before: ', currentPlayer);
+
     const squaresNew = [];
     for (let row = 0; row < 3; row += 1) {
       squaresNew.push([]);
       for (let col = 0; col < 3; col += 1) {
-        if (squares.id === updatedSquare.id) {
+        if (squares[row][col].id === updatedSquareId) {
           squaresNew[row].push({
-            id: updatedSquare.id,
+            id: updatedSquareId,
             value: currentPlayer,
           });
         } else {
-          squaresNew[row].push(squares);
+          squaresNew[row].push(squares[row][col]);
         };
       }
     };
+
+    let newPlayer;
     if (currentPlayer === PLAYER_1) {
-      currentPlayer = PLAYER_2;
+      newPlayer = PLAYER_2;
     } else {
-      currentPlayer = PLAYER_1;
+      newPlayer = PLAYER_1;
     };
 
+    setCurrentPlayer(newPlayer);
     setSquares(squaresNew);
   }
   // Wave 2
