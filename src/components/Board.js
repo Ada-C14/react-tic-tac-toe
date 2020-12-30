@@ -18,7 +18,7 @@ const generateSquareComponents = (squares, onClickCallback, currentPlayer) => {
 
 const Board = ({ squares, onClickCallback, currentPlayer }) => {
   const squareList = generateSquareComponents(squares, onClickCallback, currentPlayer);
-  console.log(squareList);
+  // console.log(squareList);
   return <div className="grid" >
     {squareList}
   </div>

@@ -5,12 +5,13 @@ import './Square.css'
 
 const Square = (props) => {
   const onSquareClick = () => {
+    
     const updatedSquare = {
       id: props.id,
       value: props.currentPlayer,
     }
     props.onClickCallback(updatedSquare);
-    console.log(updatedSquare.value);
+
   }
  
 
