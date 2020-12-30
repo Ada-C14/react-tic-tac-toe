@@ -5,10 +5,6 @@ import './Square.css'
 
 const Square = (props) => {
   const onSquareClick = () => {
-    console.log(props.value);
-    console.log(props.id);
-    console.log(props.currentPlayer);
-
     let value;
     let wasUpdated = false;
 

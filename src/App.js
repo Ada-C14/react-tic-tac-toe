@@ -80,8 +80,6 @@ const App = () => {
     // Complete in Wave 4
   }
 
-  console.log(squares);
-
   return (
     <div className="App">
       <header className="App-header">
