@@ -30,18 +30,7 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  const [player, setCurrentPlayer] = useState(PLAYER_1)
-
-  // const updateCurrentPlayer = (updatedCurrentPlayer) => {
-
-  //   if (player === PLAYER_1) {
-  //     updatedCurrentPlayer = PLAYER_2;
-  //   } else {
-  //     updatedCurrentPlayer = PLAYER_1;
-  //   }
-
-  //   setCurrentPlayer(updatedCurrentPlayer);
-  // }
+  const [player, setCurrentPlayer] = useState(PLAYER_1);
 
   const updateSquare = (updatedSquare) => {
     const updateCurrentPlayer = (updatedCurrentPlayer) => {
@@ -59,18 +48,20 @@ const App = () => {
     for (let row = 0; row < 3; row += 1) {
       squaresNew.push([]);
       for (let col = 0; col < 3; col += 1) {
-        if (squares[row][col].id === updatedSquare) {
+        if (squares[row][col].id === updatedSquare && squares[row][col].value==='') {
           squaresNew[row].push({
             id: updatedSquare,
             value: player,
           });
+
+          setCurrentPlayer(updateCurrentPlayer);
         } else {
           squaresNew[row].push(squares[row][col]);
         };
       }
     };
     
-    setCurrentPlayer(updateCurrentPlayer);
+    
     setSquares(squaresNew);
     console.log(player)
   }
