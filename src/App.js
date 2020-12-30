@@ -57,7 +57,7 @@ const App = () => {
     // flatten the array of squares
     const flatArray = [].concat(...squares);
     // have a 2d array of combos to check
-    const winnerCombos = [[3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
+    const winnerCombos = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
 
     // if any produce winner, set winner
     winnerCombos.forEach((combo) => {
@@ -81,7 +81,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is {winner}</h2>
+        <h2>Winner is {winner}</h2>
         <button onClick={resetGame}> Reset Game</button>
       </header>
       <main>
