@@ -73,13 +73,15 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
-
-    if (squares[0][0].value !== '' && (squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value) || (squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value)) {
+    // Check diagonals
+    if (squares[0][0].value !== '' && (squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value) || (squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value)) {  
       setWinner(squares[1][1].value);
     } else {
-      for (let i=0; i < 3; i++) {
+      for (let i = 0; i < 3; i ++) {
+          // rows
           if (squares[i][0].value !== '' && squares[i][0].value === squares[i][1].value && squares[i][0].value === squares[i][2].value) {
             setWinner(squares[i][0].value);
+          // columns
           } else if (squares[0][i].value !== '' && squares[0][i].value === squares[1][i].value && squares[0][i].value === squares[2][i].value) {
             setWinner(squares[0][i].value);
           } 
