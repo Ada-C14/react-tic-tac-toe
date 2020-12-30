@@ -35,6 +35,7 @@ const App = () => {
   const [currentPlayer, setPlayer] = useState(PLAYER_1); // default player is always player_1, 'X' 
 
   const [currentWinner, setWinner] = useState(''); // default winner is empty 
+
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -86,10 +87,10 @@ const App = () => {
       }
   }
 
-
-
   const resetGame = () => {
     // Complete in Wave 4
+    setSquares(generateSquares())
+    setWinner('')
   }
 
   return (
@@ -97,7 +98,7 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         <h2>Winner is {currentWinner} </h2>
-        <button>Reset Game</button>
+        <button onClick = {resetGame}> Reset Game </button>
       </header>
       <main>
 {/* App should pass to Board a 2D array of JavaScript objects  */}
