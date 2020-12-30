@@ -30,6 +30,30 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const updateSquare = (updatedSquare) => {
+    const newSquares = [];
+    let i = 0
+    squares.forEach((row) => {
+      newSquares.push([]);
+      row.forEach((square) => {
+        if (square.id === updatedSquare.id) {
+          newSquares[i].push(updatedSquare);
+        } else {
+          newSquares[i].push(square);
+        }
+
+      });
+      i+= 1
+    });
+    setSquares(newSquares);
+  }
+   
+
+
+  //onclick button?
+  // toggle present present ? x or o 
+  //event handling key presses ?
+  //what square are they clicking on whose turn is it 
 
   // Wave 2
   // You will need to create a method to change the square 
@@ -62,7 +86,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={updateSquare}/>
       </main>
     </div>
   );
