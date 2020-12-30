@@ -29,12 +29,17 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
-  const [squares, setSquares] = useState(generateSquares());
+  const [squareList, setSquares] = useState(generateSquares());
+  const [playCount, setPlayCount] = useState(0)
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
+
+  const callback = () => {
+    // to be filled in 
+  }
 
 
   const checkForWinner = () => {
@@ -62,7 +67,7 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squareList} onClickCallback={callback} />
       </main>
     </div>
   );
