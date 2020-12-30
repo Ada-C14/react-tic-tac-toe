@@ -32,7 +32,7 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
 
   const [player, setPlayer] = useState(PLAYER_1);
-  const [winner, setWinner] = useState(null);
+  const [winner, setWinner] = useState();
 
   /// const setSquares
 
@@ -42,12 +42,11 @@ const App = () => {
   //   Then pass it into the squares as a callback
 
 
-
   const onClickCallback = (squareId) => {
 
     const newSquares = []
     for(const row of squares) {
-      const newRow = [];
+      const newRow = []
       for(const square of row) {
         if (square.id === squareId && square.value === '') {
           square.value = player;          
@@ -105,15 +104,18 @@ const App = () => {
 
   const resetGame = () => {
     // Complete in Wave 4
-    window.location.reload();
+    // window.location.reload();
+    setSquares(generateSquares());
+    setPlayer(PLAYER_1);
+    setWinner(null);
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        {/* <h2>The winner is ...{winner} -- Fill in for wave 3 </h2> */}
-        {winner ? <h2>The winner is ... {winner}! </h2> : <h2>Next player: {player}</h2>}
+        {/* <h2>The Winner is {winner} -- Fill in for wave 3 </h2> */}
+        {winner ? <h2>Winner is {winner}</h2> : <h2>Next player: {player}</h2>}
         <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
