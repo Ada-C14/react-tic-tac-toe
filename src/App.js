@@ -58,7 +58,8 @@ const App = () => {
         }
       }
   }
-    setSquares(newSquares)
+  checkForWinner(newSquares)
+  setSquares(newSquares)
   }
  
   // Wave 2
@@ -85,33 +86,20 @@ const App = () => {
       [0, 4, 8],
       [2, 4, 6],
     ];
-  let oneDimensionalArray = []
-    
-  const twoDimensionalArray = squares.map((row, i) => {
-    return oneDimensionalArray.push(row)
-    });
-    oneDimensionalArray = [...twoDimensionalArray[0], ...twoDimensionalArray[1], ...twoDimensionalArray[2]]
+ 
+    const oneDimensionalArray = [...squares[0], ...squares[1], ...squares[2]]
     
     for (let i = 0; i < winningCombos.length; i++) {
       const [a, b, c] = winningCombos[i];
-      if (oneDimensionalArray[a] && oneDimensionalArray[a] === oneDimensionalArray[b] && oneDimensionalArray[a] === oneDimensionalArray[c]) {
-        return oneDimensionalArray[a];
+      if (oneDimensionalArray[a].value && 
+        oneDimensionalArray[a].value === oneDimensionalArray[b].value && 
+        oneDimensionalArray[a].value === oneDimensionalArray[c].value) {
+        
+         setWinner(oneDimensionalArray[a].value);
+         return;
       }
     }
-    return null;
   }
-
-
-
-
-
-    // for (const row of squares) { 
-    //   for (const square of row) {
-    //     if (square.value === updatedSquareId && square.value === '') {
-    //       const updatedSquare = {
-    //         id: updatedSquareId,
-    //         value: player
-    //       }
     
     // Complete in Wave 3
     // You will need to:
@@ -123,21 +111,16 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
-  }
-  }
-
-    
-
   const resetGame = () => {
     // Complete in Wave 4
   }
-//   console.log('****')
-// console.log(squares)
+
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        { winner && // if winner is truthy, render the following h2 tag
+        <h2>Winner is {winner} </h2> }
         <button>Reset Game</button>
       </header>
       <main>
