@@ -39,14 +39,6 @@ const App = () => {
     // console.log('hiiiiii!!!')
     const newSquares = [];
     
-    //for of loop
-    //need to make new set of tic tac toe data
-    //can pass to set squares
-    //want deep copies of data (2-d arration, copy square data)
-    //spread operator can do copy of simple object
-    //can spread object into new object
-    //newSquare = {...square}
-    //once you have copy, can safely make changes to copy (x's o's)
     for (const row of squares) { 
       const newRow = [];
       newSquares.push(newRow);
@@ -68,15 +60,7 @@ const App = () => {
   }
     setSquares(newSquares)
   }
-  //   squares.forEach((square) => {
-  //     if (square.id === updatedSquare.id) {
-  //       squares.push(updatedSquare);
-  //     } else {
-  //       squares.push(square);
-  //     }
-  //   });
-  //   setSquares(squares)
-  // }
+ 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -101,15 +85,33 @@ const App = () => {
       [0, 4, 8],
       [2, 4, 6],
     ];
-
+  let oneDimensionalArray = []
     
-    for (const row of squares) { 
-      for (const square of row) {
-        if (square.value === updatedSquareId && square.value === '') {
-          const updatedSquare = {
-            id: updatedSquareId,
-            value: player
-          }
+  const twoDimensionalArray = squares.map((row, i) => {
+    return oneDimensionalArray.push(row)
+    });
+    oneDimensionalArray = [...twoDimensionalArray[0], ...twoDimensionalArray[1], ...twoDimensionalArray[2]]
+    
+    for (let i = 0; i < winningCombos.length; i++) {
+      const [a, b, c] = winningCombos[i];
+      if (oneDimensionalArray[a] && oneDimensionalArray[a] === oneDimensionalArray[b] && oneDimensionalArray[a] === oneDimensionalArray[c]) {
+        return oneDimensionalArray[a];
+      }
+    }
+    return null;
+  }
+
+
+
+
+
+    // for (const row of squares) { 
+    //   for (const square of row) {
+    //     if (square.value === updatedSquareId && square.value === '') {
+    //       const updatedSquare = {
+    //         id: updatedSquareId,
+    //         value: player
+    //       }
     
     // Complete in Wave 3
     // You will need to:
@@ -122,6 +124,9 @@ const App = () => {
     //    all three squares have the same value.
 
   }
+  }
+
+    
 
   const resetGame = () => {
     // Complete in Wave 4
