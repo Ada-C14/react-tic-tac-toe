@@ -38,14 +38,14 @@ const App = () => {
     let updatedBoard = [];
     for (let row = 0; row < squares.length; row++) {
       for (let col = 0; col < squares.length; col++) {
-        if (updatedSquare === squares[row][col].id) {
+        if (updatedSquare === squares[row][col].id && squares[row][col].value === '') {
           squares[row][col]['value'] = (swapPlayer() ? PLAYER_1 : PLAYER_2);
         }
       }
       updatedBoard.push(squares[row]);
     }
     setSquares(updatedBoard);
-    checkForWinner(updatedBoard);
+    checkForWinner();
   };
 
   function swapPlayer() {
@@ -53,7 +53,10 @@ const App = () => {
     return player;
   };
 
-  const checkForWinner = (squares) => {
+  const checkForWinner = () => {
+    // if the winner is already delcared, return (don't assign new winner)
+    if (winner !== '') return;
+    
     // flatten the array of squares
     const flatArray = [].concat(...squares);
     // have a 2d array of combos to check
@@ -64,11 +67,20 @@ const App = () => {
       if (flatArray[combo[0]].value !== '' && flatArray[combo[0]].value === flatArray[combo[1]].value && flatArray[combo[1]].value === flatArray[combo[2]].value) {
         setWinner(flatArray[combo[0]].value);
         return;
-      }
+      };
     })
 
-    // if there are no empty sqaures, and winner is still '' then it's a tie, game is over
+    // if there are no empty sqaures, then it's a tie, game is over
+    let sqauresToPlay = 0;
+    flatArray.forEach((square) => {
+      if (square.value === '') {
+        sqauresToPlay += 1
+      };
+    });
 
+    if (sqauresToPlay === 0) {
+      setWinner('TIED! GAME OVER');
+    };
   };
 
   const resetGame = () => {
