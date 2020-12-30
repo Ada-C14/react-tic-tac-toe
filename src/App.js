@@ -54,11 +54,11 @@ const App = () => {
       for(const square of row) {
         if (square.id === squareId && square.value === '') {
           square.value = player;          
+          setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
         }
       }
     };
   
-    setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
     setSquares(newSquares);
     console.log(squareId);
   }
