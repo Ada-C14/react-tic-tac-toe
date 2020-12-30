@@ -33,7 +33,7 @@ const App = () => {
 
   // Wave 2
   const onClickCallback = (updatedSquare) => {
-    const students = [];
+    const squares = [];
 
     squareList.forEach(square => {
       if (square.value === '') {
