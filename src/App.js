@@ -39,20 +39,21 @@ const App = () => {
   const updateSquare = (updatedSquare) => {
     const newSquares = [];
 
-    squares.forEach((row) => {
+    squares.forEach((row, i) => {
       newSquares.push([]);
       row.forEach(square => {
+
         if (square.id === updatedSquare.id) {
+          newSquares[i].push(updatedSquare);
+
           if (player === PLAYER_1) {
             setPlayer(PLAYER_2);
           } else if (player === PLAYER_2) {
             setPlayer(PLAYER_1);
           }
 
-        newSquares[row].push(updatedSquare);
-
       } else {
-        newSquares[row].push(square);
+        newSquares[i].push(square);
       }
       })
     });

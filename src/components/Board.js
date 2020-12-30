@@ -4,7 +4,7 @@ import Square from './Square';
 import PropTypes from 'prop-types';
 
 
-const generateSquareComponents = (squares, onClickCallback,player) => {
+const generateSquareComponents = (squares, onClickCallback, player) => {
   // Complete this for Wave 1
   // squares is a 2D Array, but 
   //  you need to return a 1D array
@@ -18,7 +18,7 @@ const generateSquareComponents = (squares, onClickCallback,player) => {
         id={squares[row][col].id}
         value={squares[row][col].value}
         onClickCallback={onClickCallback}
-        play={player}
+        player={player}
       />)
     }
   }
