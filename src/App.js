@@ -21,20 +21,13 @@ const generateSquares = () => {
       currentId += 1;
     }
   }
-
   return squares;
 }
 
 const App = () => {
 
-  // This starts state off as a 2D array of JS objects with
-  // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
+  const [current, changeCurrent] = useState(true);
 
 
   const checkForWinner = () => {
