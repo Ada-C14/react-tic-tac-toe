@@ -37,25 +37,11 @@ const App = () => {
     }
   }
 
-  // This starts state off as a 2D array of JS objects with
-  // empty value and unique ids.
+  // Initialize board (2D array)
   const [squares, setSquares] = useState(generateSquares());
 
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
-
-  const onClickCallback = (updatedSquare) => {
-    // console.log(updatedSquare);
-    // Check if square has value
-
-    // If it has value, return without doing anything
-
-    // Set value of square according to current player
-
-    // Toggle current player
-    //Creating 2D array
+  // This gets called when a square is clicked on
+  const onClickCallback = (updatedSquare, wasUpdated) => {
     let newSquaresArray = new Array(3);
       for (let i = 0; i < newSquaresArray.length; i++) {
         newSquaresArray[i] = new Array(3);
@@ -65,13 +51,15 @@ const App = () => {
       for (let column in squares[row]) {
         if (squares[row][column].id === updatedSquare.id) {
           newSquaresArray[row].push(updatedSquare)
-          switchPlayer();
         }
         else {
           newSquaresArray[row].push(squares[row][column])
         }
       }
     };
+    if (wasUpdated) {
+      switchPlayer();
+    }
     setSquares(newSquaresArray);
   }
 

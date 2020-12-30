@@ -9,12 +9,22 @@ const Square = (props) => {
     console.log(props.id);
     console.log(props.currentPlayer);
 
-    const updatedSquare = {
-      id: props.id,
-      value: props.value === '' ? props.currentPlayer : props.value
+    let value;
+    let wasUpdated = false;
+
+    if (props.value === '') {
+      value = props.currentPlayer;
+      wasUpdated = true;
+    } else {
+      value = props.value
     }
 
-    props.onClickCallback(updatedSquare);
+    const updatedSquare = {
+      id: props.id,
+      value: value
+    }
+
+    props.onClickCallback(updatedSquare, wasUpdated);
   }
 
   return <button
