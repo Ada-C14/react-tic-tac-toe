@@ -51,7 +51,7 @@ const App = () => {
 
   for (let row = 0; row < updatedSquares.length; row ++) {
     for (let col = 0; col < updatedSquares.length; col ++) {   
-      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '') {
+      if (updatedSquares[row][col].id === selectedSquareId && updatedSquares[row][col].value === '' && currentWinner == '') {
           updatedSquares[row][col].value = currentPlayer  // fills in value for blank square
       } else {
           currentPlayer === PLAYER_1 ? setPlayer(PLAYER_2) : setPlayer(PLAYER_1);  // changes player 
@@ -76,11 +76,21 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
-    if (squares[0][0].value === squares[0][1].value) {
-        setWinner(squares[0][0].value);
-    }
 
+    if (squares[0][0].value !== '' && (squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value) || (squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value)) {
+      setWinner(squares[1][1].value);
+    } else {
+      for (let i=0; i < 3; i++) {
+          if (squares[i][0].value !== '' && squares[i][0].value === squares[i][1].value && squares[i][0].value === squares[i][2].value) {
+            setWinner(squares[i][0].value);
+          } else if (squares[0][i].value !== '' && squares[0][i].value === squares[1][i].value && squares[0][i].value === squares[2][i].value) {
+            setWinner(squares[0][i].value);
+          } 
+        }
+      }
   }
+
+
 
   const resetGame = () => {
     // Complete in Wave 4
