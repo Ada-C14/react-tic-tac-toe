@@ -12,7 +12,12 @@ const generateSquareComponents = (squares, onClickCallback) => {
 
   const arrOneDimensional = [].concat(...squares);
   
-  const squareComponents = arr1d.map(x => <Square/>);
+  const squareComponents = arrOneDimensional.map(square => 
+    <Square
+      key={square.id}
+      id={square.id}
+      value={square.value}
+    />);
 
   return squareComponents
 }
