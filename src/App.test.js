@@ -364,36 +364,36 @@ describe('App', () => {
     });       
   });
 
-  describe('Wave 4:  reset game button', () => {
-    test('App has a "Reset Game" button', () => {
-      // Arrange-Act
-      render(<App />);
+  // describe('Wave 4:  reset game button', () => {
+  //   test('App has a "Reset Game" button', () => {
+  //     // Arrange-Act
+  //     render(<App />);
   
-      const resetButton = screen.getByText('Reset Game');
+  //     const resetButton = screen.getByText('Reset Game');
   
-      // Assert
-      expect(resetButton).toBeInTheDocument();
-    });
+  //     // Assert
+  //     expect(resetButton).toBeInTheDocument();
+  //   });
   
-    test('the button resets the game', () => {
-      // Arrange - click on some squares
-      const { container } = render(<App />);
-      clickButtonAndVerifyResult(container, 0, 'x');
-      clickButtonAndVerifyResult(container, 2, 'o');
+  //   test('the button resets the game', () => {
+  //     // Arrange - click on some squares
+  //     const { container } = render(<App />);
+  //     clickButtonAndVerifyResult(container, 0, 'x');
+  //     clickButtonAndVerifyResult(container, 2, 'o');
 
-      // Find the reset button
-      const resetButton = screen.queryByText(/[Rr]eset\s+[Gg]ame/);
+  //     // Find the reset button
+  //     const resetButton = screen.queryByText(/[Rr]eset\s+[Gg]ame/);
 
-      // Act - Click the reset button
-      fireEvent.click(resetButton);
+  //     // Act - Click the reset button
+  //     fireEvent.click(resetButton);
 
-      // Assert - There should no longer be Xs or Os 
-      // on the board.
-      const xSquare = screen.queryByText('x');
-      expect(xSquare).toBeNull();
+  //     // Assert - There should no longer be Xs or Os 
+  //     // on the board.
+  //     const xSquare = screen.queryByText('x');
+  //     expect(xSquare).toBeNull();
 
-      const oSquare = screen.queryByText('o');
-      expect(oSquare).toBeNull();
-    });
-  });
+  //     const oSquare = screen.queryByText('o');
+  //     expect(oSquare).toBeNull();
+  //   });
+  // });
 });
