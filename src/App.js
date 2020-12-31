@@ -66,24 +66,30 @@ const App = () => {
 
   const checkForWinner = () => {
     for (let row = 0; row < 3; row++) {
-      if (squares[row][0].value === squares[row][1].value && squares[row][1].value === squares[row][2].value) {
-        return squares[row][0].value;
+      // Check that it isn't a row of blank squares
+      if (squares[row][0].value) {
+        // Check that all squares are the same
+        if (squares[row][0].value === squares[row][1].value && squares[row][1].value === squares[row][2].value) {
+          return squares[row][0].value;
+        }
       }
     }
     // 2. Go down each column to see if
     //    3 squares in each column match
     for (let col = 0; col < 3; col++) {
-      if (squares[0][col].value === squares[1][col].value && squares[1][col].value === squares[2][col].value) {
-        return squares[0][col].value;
+      if (squares[0][col].value) {
+        if (squares[0][col].value === squares[1][col].value && squares[1][col].value === squares[2][col].value) {
+          return squares[0][col].value;
+        }
       }
     }
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
-    if (squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value) {
+    if (squares[0][0].value && squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value) {
       return squares[0][0].value;
     }
 
-    if (squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value) {
+    if (squares[0][2].value && squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value) {
       return squares[0][2].value;
     }
 
