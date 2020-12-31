@@ -37,7 +37,7 @@ const App = () => {
     for (let i = 0; i < squares.length; i += 1) {
       for (let j = 0; j < squares.length; j += 1) {
         if(event === squares[i][j].id){
-        squares[i][j]['value'] = (switchPlayer() ? PLAYER_2 : PLAYER_1);
+        squares[i][j]['value'] = (switchPlayer() ? PLAYER_1 : PLAYER_2);
         }
       }
       newSquares.push(squares[i]);
