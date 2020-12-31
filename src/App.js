@@ -86,7 +86,8 @@ const App = () => {
     ]
 
     for (let i = 0; i < winningConditions.length; i++) {
-      if ((winningConditions[i][0] === winningConditions[i][1]) && (winningConditions[i][1] === winningConditions[i][2])){
+      const [first, second, third] = winningConditions[i]
+      if (first === second && first === third && first !== ''){
         // const winner = winningConditions[i][0];
         setWinner(winningConditions[i][0])
       }
@@ -103,7 +104,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is {winner} </h2>
+        <h2>Winner is {winner} </h2>
         <button>Reset Game</button>
       </header>
       <main>
