@@ -21,7 +21,6 @@ const generateSquareComponents = (squares, onClickCallback) => {
   return squaresArray;
 }
 
-// maybe could refactor above to use deconstructor and map?
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback);

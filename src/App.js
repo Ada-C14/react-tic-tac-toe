@@ -9,9 +9,9 @@ const PLAYER_1 = 'x';
 const PLAYER_2 = 'o';
 const NO_WINNER = 'Nobody...';
 
+
 const generateSquares = () => {
   const squares = [];
-
   let currentId = 0;
 
   for (let row = 0; row < 3; row += 1) {
@@ -29,48 +29,42 @@ const generateSquares = () => {
 }
 
 const App = () => {
-
-    // This starts state off as a 2D array of JS objects with
-    // empty value and unique ids.
+  
     const [squares, setSquares] = useState(generateSquares());
     const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1);
     const [numSquaresFilled, setNumSquaresFilled] = useState(0);
     const [winner, setWinner] = useState(null);
 
     let updatedNumSquaresFilled = numSquaresFilled
+  
+    const onClickCallback = (id) => {
+    if (winner !== null) return;
+
+    const newSquares = [...squares];
+
+    for (const row of newSquares) {
+      for (const square of row) {
+        if (square.id === id && square.value === '') {
+          square.value = currentPlayer;
+          setNumSquaresFilled(numSquaresFilled + 1);
+          currentPlayer === PLAYER_1 ? setCurrentPlayer(PLAYER_2) : setCurrentPlayer(PLAYER_1);
+        }
+      }
+    }
+   checkForWinner();
+   setSquares(squaresList);
+  }
+
+
+
+    // This starts state off as a 2D array of JS objects with
+    // empty value and unique ids.
+
 
     // Wave 2
-    const onClickCallback = (squareID) => {
-      if (winner !== null) return;
 
-      const squaresList = [...squares];
-      let row = 0;
-      let col = 0;
-      let found = false;
-
-      while (row < 3 && !found) {
-        while (col < 3 && !found) {
-          let currentSquare = squaresList[row][col];
-          if (currentSquare.id === squareID) {
-            if (currentSquare.value !== '') return;
-            found = true;
-            currentSquare.value = currentPlayer;
-            updatedNumSquaresFilled = numSquaresFilled + 1
-            setNumSquaresFilled(updatedNumSquaresFilled);
-            if (currentPlayer === PLAYER_1) {
-              setCurrentPlayer(PLAYER_2)
-            } else {
-              setCurrentPlayer(PLAYER_1);
-            }
-          }
-          col += 1;
-        }
-        row += 1;
-        col = 0
-      }
-      checkForWinner();
-      setSquares(squaresList);
-    }
+    
+    
 
 
     // You will need to create a method to change the square 
