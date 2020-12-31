@@ -4,7 +4,6 @@ import Board from './Board';
 import { render, screen, fireEvent} from '@testing-library/react'
 
 
-describe('Wave 1: Board', () => {
   // Sample input to the Board component
   const SAMPLE_BOARD = [
     [
@@ -51,6 +50,9 @@ describe('Wave 1: Board', () => {
     ],    
   ];
 
+describe('Wave 1: Board', () => {
+
+
   test('that board will render with the proper number of Xs and Os', () => {
     // Act
     render(<Board squares={SAMPLE_BOARD} onClickCallback={() => { }} />);
@@ -66,11 +68,12 @@ describe('Wave 1: Board', () => {
   test('that the board can render empty squares', () => {
     // Arrange
     const emptyBoard = SAMPLE_BOARD.map((row) => {
-      return row.map((square) => {
+      return row.map((square) => {        
         return {
           ...square,
           value: '',
         }
+        
       });
     });
 
@@ -81,7 +84,8 @@ describe('Wave 1: Board', () => {
     const buttons = container.querySelectorAll('.grid button');
     expect(buttons.length).toEqual(9);
   });
-
+});
+describe('Wave 2: Board', () => {
   describe('button click callbacks', () => {
     test('that the callback is called for the 1st button', () => {
       // Arrange
