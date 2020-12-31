@@ -47,7 +47,7 @@ const App = () => {
     squares.forEach((row) => {
       newSquares.push([]);
       row.forEach((square) => {
-        if (square.id === updatedSquare.id && square.value === '') {
+        if (square.id === updatedSquare.id && square.value === '' && winner === 'TBD') {
           newSquares[i].push(updatedSquare);
           changePlayer();
         } else {
@@ -102,7 +102,10 @@ const App = () => {
   }
 
   const checkWinnerString = (string) => {
-    if(string === 'XXX' || string === 'OOO') { setWinner(currentPlayer);
+    if(string === 'XXX') { 
+      setWinner(PLAYER_1);
+    } else if (string === 'OOO') {
+      setWinner(PLAYER_2);
     }
   }
 
