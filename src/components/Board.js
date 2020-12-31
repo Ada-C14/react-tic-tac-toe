@@ -13,20 +13,19 @@ const generateSquareComponents = (squares, onClickCallback) => {
 
   return squaresList.map( (square, i) => {
     return(
-      <li key={i}>
         <Square 
         id = {square.id} 
         value = {square.value}
         onClickCallback = {onClickCallback}
+         key={square.id}
         />
-      </li>
     )
   })
 }
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback);
-  // console.log(squareList);
+  
   return <div className="grid" >
     {squareList}
   </div>

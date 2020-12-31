@@ -61,30 +61,30 @@ const App = () => {
       // col check for loop outside of for each 
 
       for(let i in squares){
-        if (squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value &&  squares[i][0].value != ''){
-          return `Winner is ${squares[i][0].value}`;
+        if (squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value &&  squares[i][0].value !== ''){
+          return `Winner is player ${squares[i][0].value}`;
         }
-        else if(squares[0][i].value === squares[1][i].value && squares[1][i].value === squares[2][i].value &&  squares[0][i].value != ''){
-          return `Winner is ${squares[0][i].value}`;
-        }
+        else if(squares[0][i].value === squares[1][i].value && squares[1][i].value === squares[2][i].value &&  squares[0][i].value !== ''){
+          return `Winner is player ${squares[0][i].value}`;
+        };
       }
   
-      if((squares[1][1] != '') && (squares[1][1].value === squares[0][0].value && squares[2][2].value === squares[0][0].value) || (squares[1][1].value === squares[0][2].value && squares[1][1].value === squares[2][0].value)){
-        return `Winner is ${squares[1][1].value}`;
-      }
+      if((squares[1][1].value !== '') && ((squares[1][1].value === squares[0][0].value && squares[2][2].value === squares[0][0].value) || (squares[1][1].value === squares[0][2].value && squares[1][1].value === squares[2][0].value))){
+        return `Winner is player ${squares[1][1].value}`;
+      };
 
       const squareValues = squares.flat().map ( (square) => {
-        return square.value
+        return square.value;
       })
 
       if(!squareValues.includes('')) {
         return `It's a tie!`;
-      }
+      };
 
       //
       return `Current player: ${player}`
     }
-    
+
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -120,6 +120,8 @@ const App = () => {
 
   const resetGame = () => {
     // Complete in Wave 4
+    const blankGrid = generateSquares();
+    setSquares(blankGrid);
   }
 
   return (
@@ -127,7 +129,7 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         <h2>{checkForWinner()}</h2>
-        <button>Reset Game</button>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
         <Board squares={squares} onClickCallback={clickCallback} />
