@@ -85,18 +85,21 @@ const App = () => {
       for (let i = 0; i < squares.length; i++) {
         //rows
         if (squares[i][0].value === squares[i][1].value && 
-            squares[i][1].value === squares[i][2].value) {
+            squares[i][1].value === squares[i][2].value &&
+            squares[i][2].value != '') {
             return squares[i][0].value;
-        } else if (squares[0][i].value === squares[1][i].value && 
-            squares[1][i].value === squares[2][i].value) {
+        } else if (squares[0][i].value === squares[1][i].value && //columns
+            squares[1][i].value === squares[2][i].value && 
+            squares[2][i].value != '') {
             return squares[0][i].value;
         };
       }
-      if (squares[0][0].value === squares[1][1] && 
-        squares[1][1].value === squares[2][2]) {
+      //diagonals
+      if (squares[0][0].value === squares[1][1].value && 
+        squares[1][1].value === squares[2][2].value) {
         return squares[0][0].value;
-      } else if (squares[2][0].value === squares[1][1] && 
-        squares[1][1].value === squares[0][2]) {
+      } else if (squares[2][0].value === squares[1][1].value && 
+        squares[1][1].value === squares[0][2].value) {
         return squares[2][0].value;
       };
   }
