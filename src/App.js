@@ -3,9 +3,9 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
+const PLAYER_1 = 'x';
 
-const PLAYER_2 = 'O';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -25,6 +25,8 @@ const generateSquares = () => {
   return squares;
 }
 
+
+
 const App = () => {
 
   const [squares, setSquares] = useState(generateSquares());
@@ -32,38 +34,38 @@ const App = () => {
 
   const onClickCallback = (event) => {
     let newSquares = [];
-    for (let row = 0; row < squares.length; row += 1) {
-      for (let column = 0; column < squares.length; column += 1) {
-        squares[row][column]['value'] = (switchPlayer() ? PLAYER_2 : PLAYER_1);
-      } 
+    for (let i = 0; i < squares.length; i += 1) {
+      for (let j = 0; j < squares.length; j += 1) {
+        if(event === squares[i][j].id){
+        squares[i][j]['value'] = (switchPlayer() ? PLAYER_2 : PLAYER_1);
+        }
+      }
+      newSquares.push(squares[i]);
     }
-    newSquares.push(squares[row]);
+    setSquares(newSquares);
   }
-setSquares(newSquares);
-// => change/ remove bracket
-//toggle players
   function switchPlayer() {
     changeCurrent(!current);
     return current;
   };
-const checkForWinner = () => {
-  if(squares[0][0].value === squares[1][1].value  && squares[0][0].value === squares[2][2].value && squares[0][0].value !== '' ){
-  return squares[0][0].value;
-  }else if(squares[0][2].value === squares[1][1].value && squares[0][2].value === squares[2][0].value && squares[0][2].value !== ''){
-  return squares[0][2].value;
-  }else{
-    for(let row = 0; row < squares.length; row += 1){
-      for(let column = 0; column < squares.length; column += 1){
-        if(squares[row][0].value === squares[row][1].value && squares[row][0].value === squares[row][2].value && squares[row][0].value !== '' ){
-          return squares[row][0].value
-        }else if(squares[0][column].value === squares[1][column].value && squares[0][column].value === squares[2][column].value && squares[0][column].value !== ''){
-          return squares[0][column].value;
+  const checkForWinner = () => {
+    if(squares[0][0].value === squares[1][1].value  && squares[0][0].value === squares[2][2].value && squares[0][0].value !== '' ){
+      return squares[0][0].value;
+    }else if(squares[0][2].value === squares[1][1].value && squares[0][2].value === squares[2][0].value && squares[0][2].value !== ''){
+      return squares[0][2].value;
+    }else{
+      for(let i = 0; i < squares.length; i++){
+        for(let j = 0; j < squares.length; j++){
+          if(squares[i][0].value === squares[i][1].value && squares[i][0].value === squares[i][2].value && squares[i][0].value !== '' ){
+            return squares[i][0].value
+          }else if(squares[0][j].value === squares[1][j].value && squares[0][j].value === squares[2][j].value && squares[0][j].value !== ''){
+            return squares[0][j].value;
+          }
         }
       }
     }
+    return -1;
   }
-  return -1;
-};
 
 
 const resetGame = () => {
