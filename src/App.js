@@ -70,8 +70,9 @@ const App = () => {
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
 
-
   const checkForWinner = () => {
+
+    let winner = ''
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -81,7 +82,23 @@ const App = () => {
     //    3 squares in each column match
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
-
+      for (let i = 0; i < squares.length; i++) {
+        //rows
+        if (squares[i][0].value === squares[i][1].value && 
+            squares[i][1].value === squares[i][2].value) {
+            return squares[i][0].value;
+        } else if (squares[0][i].value === squares[1][i].value && 
+            squares[1][i].value === squares[2][i].value) {
+            return squares[0][i].value;
+        };
+      }
+      if (squares[0][0].value === squares[1][1] && 
+        squares[1][1].value === squares[2][2]) {
+        return squares[0][0].value;
+      } else if (squares[2][0].value === squares[1][1] && 
+        squares[1][1].value === squares[0][2]) {
+        return squares[2][0].value;
+      };
   }
 
   const resetGame = () => {
@@ -92,7 +109,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>The winner is {checkForWinner()}</h2>
         <button>Reset Game</button>
       </header>
       <main>
