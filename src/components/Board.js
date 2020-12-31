@@ -15,7 +15,6 @@ const generateSquareComponents = (squares, onClickCallback) => {
           key={column.id} 
           id={column.id} 
           value={column.value}
-          // onClickCallback={() => onClickCallback} />);
           onClickCallback={onClickCallback} />);
     }
   }
