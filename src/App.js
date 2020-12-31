@@ -79,6 +79,10 @@ const App = () => {
     // 1. Go accross each row to see if 
     //    3 squares in the same row match
     //    i.e. same value
+    for (let row = 0; row < 3; row++) {
+      const rowString = newSquares[row][0].value + newSquares[row][1].value + newSquares[row][2].value;
+      checkWinnerString(rowString);
+    }
 
     // 2. Go down each column to see if
     //    3 squares in each column match
@@ -88,11 +92,12 @@ const App = () => {
     const diagonalTopLeftToBottomRight = newSquares[0][0].value + newSquares[1][1].value + newSquares[2][2].value
     checkWinnerString(diagonalTopLeftToBottomRight);
 
+    const diagonalTopRightToBottomLeft = newSquares[0][2].value + newSquares[1][1].value + newSquares[2][0].value
+    checkWinnerString(diagonalTopRightToBottomLeft);
 
   }
 
   const checkWinnerString = (string) => {
-    console.log(string)
     if(string === 'XXX' || string === 'OOO') { setWinner(currentPlayer);
     }
   }
