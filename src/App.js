@@ -5,9 +5,9 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
-const NO_WINNER = 'nobody';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
+const NO_WINNER = 'Nobody';
 
 const generateSquares = () => {
   const squares = [];
