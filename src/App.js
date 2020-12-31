@@ -47,6 +47,7 @@ const App = () => {
         let currentSquare = squares[j][i]
         if (currentSquare.id === updatedSquare.id) {
           if (currentSquare.value !== '') { break; }
+          if (winner !== '') {break;}
           if (playCount % 2 === 0) {
             currentSquare.value = 'x'
           } else {
