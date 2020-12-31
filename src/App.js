@@ -61,6 +61,35 @@ const App = () => {
   //   Then pass it into the squares as a callback
 
   const checkForWinner = () => {
+
+    console.log(squares)
+    const flattenedArray = [].concat(...squares).flat();
+    console.log(flattenedArray)
+
+    if (flattenedArray[0].value === flattenedArray[1].value && flattenedArray[1].value === flattenedArray[2].value && flattenedArray[0].value !== '') {
+      setWinner(flattenedArray[0].value);
+    }
+    else if (flattenedArray[3].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[5].value && flattenedArray[3].value !== '') {
+      setWinner(flattenedArray[3].value);
+    }
+    else if (flattenedArray[6].value === flattenedArray[7].value && flattenedArray[7].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[6].value);
+    }
+    else if (flattenedArray[0].value === flattenedArray[3].value && flattenedArray[3].value === flattenedArray[6].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[0].value);
+    }
+    else if (flattenedArray[2].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[7].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[2].value);
+    }
+    else if (flattenedArray[3].value === flattenedArray[5].value && flattenedArray[5].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[3].value);
+    }
+    else if (flattenedArray[0].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[0].value);
+    }
+    else if (flattenedArray[2].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[6].value && flattenedArray[6].value !== '') {
+      setWinner(flattenedArray[2].value);
+    }
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -79,27 +108,27 @@ const App = () => {
     // - three up and down (col) => [col][0], [col][1], [col][2]
     // - two diagonal options => [0][0], [1][1], [2][2] && [0][2], [1][1], [2][0]
     
-    for(let i = 0; i < squares.length; i ++){
-        // check for a winning row
-        if (squares[i][0].value !== '' && squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value){
-          setWinner(squares[i][0].value);
-          break;
-        } 
-        // check for a winning column
-        else if (squares[0][i].value !== '' && squares[0][i].value === squares[1][i].value && squares[1][i].value === squares[2][i].value){
-          setWinner(squares[0][i].value); 
-          break;
-        } 
-        // check for diagonals  
-        else if (squares[0][0].value !== '' && squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value){
-          setWinner(squares[0][0].value); 
-          break;
-        } 
-        else if (squares[0][2].value !== '' && squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value){
-          setWinner(squares[0][2].value);
-          break;
-        }     
-    }
+    // for(let i = 0; i < squares.length; i ++){
+    //     // check for a winning row
+    //     if (squares[i][0].value !== '' && squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value){
+    //       setWinner(squares[i][0].value);
+    //       break;
+    //     } 
+    //     // check for a winning column
+    //     else if (squares[0][i].value !== '' && squares[0][i].value === squares[1][i].value && squares[1][i].value === squares[2][i].value){
+    //       setWinner(squares[0][i].value); 
+    //       break;
+    //     } 
+    //     // check for diagonals  
+    //     else if (squares[0][0].value !== '' && squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value){
+    //       setWinner(squares[0][0].value); 
+    //       break;
+    //     } 
+    //     else if (squares[0][2].value !== '' && squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value){
+    //       setWinner(squares[0][2].value);
+    //       break;
+    //     }     
+    // }
   }
 
   const resetGame = () => {
