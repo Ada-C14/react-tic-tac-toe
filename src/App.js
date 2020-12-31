@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+ import React, { useState } from 'react';
 import './App.css';
 
 import Board from './components/Board';
@@ -31,8 +31,10 @@ const App = () => {
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
   const [currentPlayer, setCurrentPlayer] = useState(PLAYER_1)
+  const [winner, setWinner] = useState(null)
 
   const updateSquares = (id) => {
+    // checkForWinner(squares)
     const newSquares = [...squares]
 
     for (let row = 0; row < 3; row += 1) {
@@ -51,6 +53,8 @@ const App = () => {
     }
   }
     setSquares(newSquares)
+    checkForWinner()
+
   }
 
   
@@ -67,6 +71,27 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+    for (let row = 0; row < 3; row ++) {
+      if (squares[row][0].value === squares[row][1].value === squares[row][2].value) {
+        setWinner(squares[row][0].value)
+      }
+    }
+    for (let col = 0; col < 3; col ++) {
+      if (squares[0][col].value === squares[1][col].value === squares[2][col].value) {
+        setWinner(squares[0][col].value)
+      }
+    }
+    
+
+    if (squares[0][0].value === squares[1][1].value === squares[2][2].value) {
+      setWinner(squares[0][0].value)
+      
+    } else if(squares[2][0].value === squares[1][1].value === squares[0][2].value) {
+      setWinner(squares[2][0].value)
+    };
+
+    
+
   }
 
   const resetGame = () => {
@@ -77,7 +102,7 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
+        <h2>The winner is ... {winner}  </h2>
         <button>Reset Game</button>
       </header>
       <main>
