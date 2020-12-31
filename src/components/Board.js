@@ -3,12 +3,12 @@ import './Board.css';
 import Square from './Square';
 import PropTypes from 'prop-types';
 
-
+// wave 1: render grid
 const generateSquareComponents = (squares, onClickCallback) => {
-  
+
   const squaresList = squares.flat();
   return squaresList.map(square =>
-    <Square 
+    <Square
       id={square.id}
       value={square.value}
       onClickCallback={onClickCallback}
@@ -19,7 +19,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback);
-  console.log(squareList);
+  // console.log(squareList);
   return <div className="grid" >
     {squareList}
   </div>
