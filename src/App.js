@@ -10,7 +10,6 @@ let winner = ''
 
 const generateSquares = () => {
   const squares = [];
-
   let currentId = 0;
 
   for (let row = 0; row < 3; row += 1) {
@@ -44,13 +43,11 @@ const App = () => {
     };
   
     setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
-
     setSquares(newSquares);
 
     if (count > 4) {
     checkForWinner();
     }
-    
   }
 
   const checkForWinner = () => {
@@ -67,7 +64,6 @@ const App = () => {
       if (rowOfThree.every(obj => obj.value === 'x')) {
         winner = PLAYER_1
       } else if (rowOfThree.every(obj => obj.value === 'o')) {
-        console.log('Winner is o');
         winner = PLAYER_2
       } else if (allSquares.every(obj => obj.value !== '')) {
         winner = 'tie'
@@ -81,7 +77,6 @@ const App = () => {
     setSquares(generateSquares());
     setPlayer(PLAYER_1);
     winner = '';
-
   }
 
   return (
