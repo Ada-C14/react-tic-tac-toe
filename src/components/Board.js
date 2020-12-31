@@ -16,7 +16,6 @@ import PropTypes from 'prop-types';
 // We have provided you a function generateSquares in App.js which generates a 2D array of JavaScript objects 
 // with Ids and values (blank strings). These should be used to provide data to Board and Square via props.
 
-const generateSquareComponents = (squares, onClickCallback) => {
   // Complete this for Wave 1
   // squares is a 2D Array, but 
   //  you need to return a 1D array
@@ -49,16 +48,15 @@ const generateSquareComponents = (squares, onClickCallback) => {
   // return outputArray
 
 
-  // NOPE try again
-
 
   // correction: loop through squares (array of PROPS tho I thought objs), return a new Square component with id set to props.id and value set to props.value
+const generateSquareComponents = (squares, onClickCallback) => {
 
-  // const flattenedArray = [].concat(...squares);
+  const flattenedArray = [].concat(...squares);
 
-  return (
-    [].concat(...squares).map(props => // TODO: need to make this a 2D mapping somehow...
+  return (flattenedArray.map(props =>
     <Square 
+      key={props.id}
       id={props.id} 
       value={props.value} 
       onClickCallback={onClickCallback} // I think each square needs to reference the function, so onclick gets triggered for each/any?
@@ -69,7 +67,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback); 
-  console.log(squareList);
+  // console.log(squareList);
   return <div className="grid" > {/* component functions always return JSX */}
     {squareList}
   </div>

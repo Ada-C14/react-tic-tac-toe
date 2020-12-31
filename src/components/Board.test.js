@@ -83,6 +83,52 @@ describe('Wave 1: Board', () => {
   });
 });
 describe('Wave 2: Board', () => {
+  // Sample input to the Board component
+  const SAMPLE_BOARD = [
+    [
+      {
+        value: 'X',
+        id: 0,
+      },
+      {
+        value: 'X',
+        id: 1,
+      },
+      {
+        value: 'O',
+        id: 2,
+      },
+    ],
+    [
+      {
+        value: 'X',
+        id: 3,
+      },
+      {
+        value: 'X',
+        id: 4,
+      },
+      {
+        value: 'O',
+        id: 5,
+      },
+    ],
+    [
+      {
+        value: 'O',
+        id: 6,
+      },
+      {
+        value: 'O',
+        id: 7,
+      },
+      {
+        value: 'X',
+        id: 8,
+      },
+    ],    
+  ];
+
   describe('button click callbacks', () => {
     test('that the callback is called for the 1st button', () => {
       // Arrange

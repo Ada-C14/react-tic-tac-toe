@@ -3,8 +3,8 @@ import './App.css';
 
 import Board from './components/Board';
 
-const PLAYER_1 = 'X';
-const PLAYER_2 = 'O';
+const PLAYER_1 = 'x';
+const PLAYER_2 = 'o';
 
 const generateSquares = () => {
   const squares = [];
@@ -37,14 +37,16 @@ const App = () => {
     
     for (let row = 0; row < 3; row += 1) {
       for (let col = 0; col < 3; col += 1) {
-        if (updatedSquares[row][col].id === id) {
-        updatedSquares[row][col].value = player}
+        if (updatedSquares[row][col].id === id && squares[row][col].value === '') {
+        updatedSquares[row][col].value = player;
+        setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1);
+        }
         else {
-          updatedSquares[row][col].value = squares[row][col].value}
-          }
+          updatedSquares[row][col].value = squares[row][col].value
+        }
       }
+    }
     
-    setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
     setSquares(updatedSquares);
   }
 
