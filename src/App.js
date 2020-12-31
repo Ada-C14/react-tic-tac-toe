@@ -33,10 +33,6 @@ const App = () => {
   const [playCount, setPlayCount] = useState(0)
   const [winner, setWinner] = useState('')
 
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
 
   const callback = (updatedSquare) => {
    
@@ -64,16 +60,7 @@ const App = () => {
 
 
   const checkForWinner = () => {
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
-
+  
     const winningConditions = [
       [squareList[0][0].value, squareList[0][1].value, squareList[0][2].value],
       [squareList[1][0].value, squareList[1][1].value, squareList[1][2].value],
@@ -88,7 +75,6 @@ const App = () => {
     for (let i = 0; i < winningConditions.length; i++) {
       const [first, second, third] = winningConditions[i]
       if (first === second && first === third && first !== ''){
-        // const winner = winningConditions[i][0];
         setWinner(winningConditions[i][0])
       }
     }
@@ -97,7 +83,6 @@ const App = () => {
   }
 
   const resetGame = () => {
-    // Complete in Wave 4
     setSquares(generateSquares())
     setWinner('')
     setPlayCount(0)
