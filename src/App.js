@@ -45,7 +45,7 @@ const App = () => {
       for (let col = 0; col < 3; col += 1) {
         if (updatedSquares[row][col].id === id && squares[row][col].value === '') {
         updatedSquares[row][col].value = player;
-        console.log(updatedSquares)
+        // console.log(updatedSquares)
         setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1);
         }
         else {
@@ -55,7 +55,7 @@ const App = () => {
     }
 
     setSquares(updatedSquares);
-    console.log(squares)
+    // console.log(squares)
     checkForWinner(updatedSquares);
   }
 
@@ -81,19 +81,21 @@ const App = () => {
     else if (flattenedArray[6].value === flattenedArray[7].value && flattenedArray[7].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
       setWinner(flattenedArray[6].value);
     }
-    else if (flattenedArray[0].value === flattenedArray[3].value && flattenedArray[3].value === flattenedArray[6].value && flattenedArray[6].value !== '') {
+    else if (flattenedArray[0].value === flattenedArray[3].value && flattenedArray[3].value === flattenedArray[6].value && flattenedArray[0].value !== '') {
       setWinner(flattenedArray[0].value);
     }
-    else if (flattenedArray[2].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[7].value && flattenedArray[6].value !== '') {
+    // Center Column
+    else if (flattenedArray[1].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[7].value && flattenedArray[1].value !== '') {
+      setWinner(flattenedArray[1].value);
+    }
+    // Right Column
+    else if (flattenedArray[2].value === flattenedArray[5].value && flattenedArray[5].value === flattenedArray[8].value && flattenedArray[2].value !== '') {
       setWinner(flattenedArray[2].value);
     }
-    else if (flattenedArray[3].value === flattenedArray[5].value && flattenedArray[5].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
-      setWinner(flattenedArray[3].value);
-    }
-    else if (flattenedArray[0].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[8].value && flattenedArray[6].value !== '') {
+    else if (flattenedArray[0].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[8].value && flattenedArray[0].value !== '') {
       setWinner(flattenedArray[0].value);
     }
-    else if (flattenedArray[2].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[6].value && flattenedArray[6].value !== '') {
+    else if (flattenedArray[2].value === flattenedArray[4].value && flattenedArray[4].value === flattenedArray[6].value && flattenedArray[2].value !== '') {
       setWinner(flattenedArray[2].value);
     }
     // Complete in Wave 3
@@ -149,7 +151,7 @@ const App = () => {
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
         {/* <h2>Current Player: {player} </h2> */}
-        <h2>The winner is {winner} </h2>
+        <h2>Winner is {winner} </h2>
         <button onClick={() => {resetGame()}}>Reset Game</button>
       </header>
       <main>
