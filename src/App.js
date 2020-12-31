@@ -59,7 +59,7 @@ const App = () => {
       // rowcheck, column check, diaganol check 
       // row check for in loop inside of for each
       // col check for loop outside of for each 
-      
+
       for(let i in squares){
         if (squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value &&  squares[i][0].value != ''){
           return `Winner is ${squares[i][0].value}`;
@@ -72,9 +72,19 @@ const App = () => {
       if((squares[1][1] != '') && (squares[1][1].value === squares[0][0].value && squares[2][2].value === squares[0][0].value) || (squares[1][1].value === squares[0][2].value && squares[1][1].value === squares[2][0].value)){
         return `Winner is ${squares[1][1].value}`;
       }
+
+      const squareValues = squares.flat().map ( (square) => {
+        return square.value
+      })
+
+      if(!squareValues.includes('')) {
+        return `It's a tie!`;
+      }
+
       //
       return `Current player: ${player}`
     }
+    
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
@@ -99,11 +109,11 @@ const App = () => {
 
       updatedSquares.push(updatedSquareRow)
     });
+    
     if (checkForWinner() != 'Winner is x' && checkForWinner() != 'Winner is o' ){
       setSquares(updatedSquares);
     }
-      
-    
+
   }
 
   
