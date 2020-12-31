@@ -7,7 +7,7 @@ import Board from './components/Board';
 
 const PLAYER_1 = 'x';
 const PLAYER_2 = 'o';
-const NO_WINNER = 'Nobody';
+const NO_WINNER = 'Nobody...';
 
 const generateSquares = () => {
   const squares = [];
@@ -68,7 +68,7 @@ const App = () => {
         row += 1;
         col = 0
       }
-      setWinner(checkForWinner());
+      checkForWinner();
       setSquares(squaresList);
     }
 
@@ -88,34 +88,23 @@ const App = () => {
       //    3 squares in each column match
       // 3. Go across each diagonal to see if 
       //    all three squares have the same value.
-      let i = 0;
+      // let i = 0;
 
-      while (i < 3) {
-        if (squares[i][0].value !== '' &&
-          squares[i][0].value === squares[i][1].value &&
-          squares[i][0].value === squares[i][2].value) {
-          return squares[i][0].value;
-        } else if (squares[0][i].value !== '' &&
-          squares[0][i].value === squares[1][i].value &&
-          squares[0][i].value === squares[2][i].value) {
-          return squares[0][i].value;
+      const score = squares.flat()
+      const winners = [[0, 1, 2],[3, 4, 5],[6, 7, 8],[0, 3, 6],[1, 4, 7],[2, 5, 8],[0, 4, 8],[2, 4, 6]];
+
+      winners.forEach((check) => {
+        if (score[check[0]].value !== '' 
+        && score[check[0]].value === score[check[1]].value 
+        && score[check[0]].value === score[check[2]].value) {
+          setWinner(score[check[0]].value);
+          return;
         }
-        i += 1;
-      }
-      // Check Top-Left to bottom-right diagonal
-      if (squares[0][0].value === squares[1][1].value &&
-        squares[2][2].value === squares[1][1].value &&
-        squares[1][1].value !== '') {
-        return squares[0][0].value;
-      }
-      if (squares[0][2].value === squares[1][1].value &&
-        squares[2][0].value === squares[1][1].value &&
-        squares[1][1].value !== '') {
-        return squares[0][2].value;
-      }
+      })
 
       if (updatedNumSquaresFilled === 9) {
-        return NO_WINNER
+        setWinner(NO_WINNER);
+        return;
       }
       return null;
     }
@@ -143,24 +132,3 @@ const App = () => {
     }
 
     export default App;
-
-
-    // calculateWinner(squares) {
-    //   const lines = [
-    //     [0, 1, 2],
-    //     [3, 4, 5],
-    //     [6, 7, 8],
-    //     [0, 3, 6],
-    //     [1, 4, 7],
-    //     [2, 5, 8],
-    //     [0, 4, 8],
-    //     [2, 4, 6]
-    //   ];
-    //   for (let i = 0; i < lines.length; i++) {
-    //     const [a, b, c] = lines[i];
-    //     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-    //       return squares[a];
-    //     }
-    //   }
-    //   return null;
-    // }
