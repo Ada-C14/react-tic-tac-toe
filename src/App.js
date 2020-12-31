@@ -30,39 +30,109 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const [player, setPlayer] = useState(PLAYER_1);
+  const [winner, setWinner] = useState(false);
 
-  // Wave 2
-  // You will need to create a method to change the square 
-  //   When it is clicked on.
-  //   Then pass it into the squares as a callback
+  const updateSquares = (id) => {
+    const squareCopy = [];
+    let numSquaresFilled = 0;
+    let currentId = 0;
+    for (let row = 0; row < 3; row += 1) {
+      squareCopy.push([]);
+      for (let col = 0; col < 3; col += 1) {
+        if (winner === false && currentId === id && squares[row][col].value === '') {
+          squareCopy[row].push({
+            id: currentId,
+            value: player,
+          });
 
+          if (player === PLAYER_1) {
+            setPlayer(PLAYER_2)
+          } else {
+            setPlayer(PLAYER_1)
+          }
 
-  const checkForWinner = () => {
-    // Complete in Wave 3
-    // You will need to:
-    // 1. Go accross each row to see if 
-    //    3 squares in the same row match
-    //    i.e. same value
-    // 2. Go down each column to see if
-    //    3 squares in each column match
-    // 3. Go across each diagonal to see if 
-    //    all three squares have the same value.
+        } else {
+          squareCopy[row].push(squares[row][col]);
+        }
 
+        if (squareCopy[row][col].value !== '') {
+          numSquaresFilled++;
+        }
+        
+        currentId += 1;
+      }
+    }
+    
+    setSquares(squareCopy);
+    let newWinner = checkForWinner(squareCopy);
+    if (numSquaresFilled === 9) {
+      setWinner('tie');
+    } else if (newWinner !== false) {
+      setWinner(newWinner);
+    }
+  }
+
+  const checkForWinner = (squares) => {
+    // First check rows:
+    for (let row of squares) {
+      if (row.every(obj => obj.value ==='X')) {
+        return PLAYER_1;
+      } else if (row.every(obj => obj.value ==='O')) {
+        return PLAYER_2;
+      }
+    }
+
+    // Check cols:
+    for (let col = 0; col < 3; col += 1) {
+      if (squares[0][col].value === 'X' && 
+          squares[0][col].value === squares[1][col].value && 
+          squares[1][col].value === squares[2][col].value) {
+        return PLAYER_1;
+      } else if (squares[0][col].value === 'O' && 
+      squares[0][col].value === squares[1][col].value && 
+      squares[1][col].value === squares[2][col].value) {
+        return PLAYER_2;
+      }
+    }
+
+    // Check diagonals:
+    if (squares[0][0].value === 'X' && 
+        squares[0][0].value === squares[1][1].value && 
+        squares[1][1].value === squares[2][2].value) {
+      return PLAYER_1;
+    } else if (squares[0][0].value === 'O' && 
+               squares[0][0].value === squares[1][1].value && 
+               squares[1][1].value === squares[2][2].value) {
+      return PLAYER_2;
+    } else if (squares[0][2].value === 'X' && 
+               squares[0][2].value === squares[1][1].value && 
+               squares[1][1].value === squares[2][0].value) {
+      return PLAYER_1;
+    } else if (squares[0][2].value === 'O' && 
+               squares[0][2].value === squares[1][1].value && 
+               squares[1][1].value === squares[2][0].value) {
+      return PLAYER_2;
+    }
+
+    return false;
   }
 
   const resetGame = () => {
-    // Complete in Wave 4
+    setSquares(generateSquares())
+    setPlayer(PLAYER_1)
+    setWinner(false)
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is ... -- Fill in for wave 3 </h2>
-        <button>Reset Game</button>
+        <h2>{winner === false ? '' : winner === 'tie' ? 'It is a tie!' : `Winner is ${winner}`}</h2>
+        <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} />
+        <Board squares={squares} onClickCallback={updateSquares} />
       </main>
     </div>
   );
