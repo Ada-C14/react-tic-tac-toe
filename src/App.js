@@ -30,19 +30,22 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
+  const [player, setPlayer] = useState(PLAYER_1)
 
-  const updateSquare = (updatedSquare) => {
-    const squaresHoldingArray = [];
-
-    squares.forEach((square) => {
-      if (square.id === updatedSquare.id) {
-        squaresHoldingArray.push(updatedSquare);
-      } else {
-        squaresHoldingArray.push(square);
+  const onClickCallback = (id) => {
+    const updatedSquares = generateSquares();
+    
+    for (let row = 0; row < 3; row += 1) {
+      for (let col = 0; col < 3; col += 1) {
+        if (updatedSquares[row][col].id === id) {
+        updatedSquares[row][col].value = player}
+        else {
+          updatedSquares[row][col].value = squares[row][col].value}
+          }
       }
-    });
-
-    setSquares(squaresHoldingArray);
+    
+    setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1)
+    setSquares(updatedSquares);
   }
 
 
@@ -77,7 +80,8 @@ const App = () => {
         <button>Reset Game</button>
       </header>
       <main>
-        <Board squares={squares} onClickCallback={updateSquare}/>
+        <Board squares={squares} onClickCallback={onClickCallback}/> 
+        {/* prop name that is being passed down to board={the function that is defined above bc this is JS within JSX} */}
         {/* Beginning of the chain reaction where we hand the updateSquare method in as a prop to Board */}
       </main>
     </div>

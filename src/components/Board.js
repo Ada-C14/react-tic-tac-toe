@@ -61,7 +61,7 @@ const generateSquareComponents = (squares, onClickCallback) => {
     <Square 
       id={props.id} 
       value={props.value} 
-      // onClickCallback={onClickCallback} // I think each square needs to reference the function, so onclick gets triggered for each/any?
+      onClickCallback={onClickCallback} // I think each square needs to reference the function, so onclick gets triggered for each/any?
     />
   ));
 
