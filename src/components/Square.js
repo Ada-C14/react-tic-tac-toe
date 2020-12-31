@@ -3,21 +3,11 @@ import PropTypes from 'prop-types';
 
 import './Square.css'
 
-const Square = (props) => {
-  const onClickCallback = () => {
-    const updatedSquare = {
-
-    };
-    props.onClickCallback(updatedSquare);
-  };
-
-
-  return <button
-    className="square"
-  >
-    {props.value}
+const Square = ({ value, onClickCallback, id }) => (
+  <button onClick={() => onClickCallback(id)}>
+      {value}
   </button>
-}
+);
 
 Square.propTypes = {
   value: PropTypes.string.isRequired,

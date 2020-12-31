@@ -15,13 +15,13 @@ const generateSquareComponents = (squares, onClickCallback) => {
           key={column.id} 
           id={column.id} 
           value={column.value}
+          // onClickCallback={() => onClickCallback} />);
           onClickCallback={onClickCallback} />);
     }
   }
   return squaresArray;
 }
 
-// maybe could refactor above to use deconstructor and map?
 
 const Board = ({ squares, onClickCallback }) => {
   const squareList = generateSquareComponents(squares, onClickCallback);
