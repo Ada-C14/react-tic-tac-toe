@@ -6,6 +6,8 @@ import Board from './components/Board';
 const PLAYER_1 = 'x';
 const PLAYER_2 = 'o';
 
+// You need to debug React in the browser because changes are happening in the browser
+
 const generateSquares = () => {
   const squares = [];
 
@@ -29,10 +31,11 @@ const App = () => {
 
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
-  const [squares, setSquares] = useState(generateSquares());
+  const [squares, setSquares] = useState(generateSquares()); // squares is updated here, has its new value
   const [player, setPlayer] = useState(PLAYER_1);
   const [winner, setWinner] = useState(`...`);
 
+  // until the new render has occurred, the squares reported in onClickCallback is the same squares set up by the previous render
   const onClickCallback = (id) => {
     const updatedSquares = generateSquares();
 
@@ -42,6 +45,7 @@ const App = () => {
       for (let col = 0; col < 3; col += 1) {
         if (updatedSquares[row][col].id === id && squares[row][col].value === '') {
         updatedSquares[row][col].value = player;
+        console.log(updatedSquares)
         setPlayer(player === PLAYER_1 ? PLAYER_2 : PLAYER_1);
         }
         else {
@@ -51,20 +55,22 @@ const App = () => {
     }
 
     setSquares(updatedSquares);
-    checkForWinner();
+    console.log(squares)
+    checkForWinner(updatedSquares);
   }
 
+  // Could also checkForWinner right before rendering
 
   // Wave 2
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
 
-  const checkForWinner = () => {
+  const checkForWinner = (squares) => {
 
-    console.log(squares)
+    // console.log(squares)
     const flattenedArray = [].concat(...squares).flat();
-    console.log(flattenedArray)
+    // console.log(flattenedArray)
 
     if (flattenedArray[0].value === flattenedArray[1].value && flattenedArray[1].value === flattenedArray[2].value && flattenedArray[0].value !== '') {
       setWinner(flattenedArray[0].value);
@@ -137,7 +143,7 @@ const App = () => {
     setSquares(generateSquares());
     setWinner(`...`);
   }
-
+  // squares is updated here. You could also call checkForWinner here with squares directly
   return (
     <div className="App">
       <header className="App-header">
