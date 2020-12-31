@@ -68,7 +68,7 @@ const App = () => {
     
     
     setSquares(squaresNew);
-    console.log(player)
+    // console.log(player)
   }
   // Wave 2
   // You will need to create a method to change the square 
@@ -90,11 +90,11 @@ const App = () => {
         //added condition that checks is square not empty
         if (squares[i][0].value === squares[i][1].value && 
             squares[i][1].value === squares[i][2].value &&
-            squares[i][2].value != '') {
+            squares[i][2].value !== '') {
             return squares[i][0].value;
         } else if (squares[0][i].value === squares[1][i].value && //columns
             squares[1][i].value === squares[2][i].value && 
-            squares[2][i].value != '') {
+            squares[2][i].value !== '') {
             return squares[0][i].value;
         };
       }
@@ -111,8 +111,8 @@ const App = () => {
   //add a function to display tie message
   const displayResult = () => {
     const winner = checkForWinner();
-    if (winner != '') {
-      return <h2>The winner is {winner}</h2>
+    if (winner !== '') {
+      return <h2>Winner is {winner}</h2>
     } 
     //checking that all squares were filled
     for (let i = 0; i < squares.length; i++) {
