@@ -40,32 +40,27 @@ const App = () => {
   //   Then pass it into the squares as a callback
   const updateSquare = (id) => {
 
-    if (winner !== '') {return squares};
+    if (winner !== '') {return;};
+    const squares1D = [...squares[0], ...squares[1], ...squares[2]];
+    const updatedSquares1D = []
     
-    const oneDimentionalArraySquares = [...squares[0], ...squares[1], ...squares[2]];
-    const UpdatedOneDimentionalArraySquares = []
-    
-    oneDimentionalArraySquares.forEach((square) => {
+    squares1D.forEach((square) => {
       if(square.value === '' && square.id === id){
         square.value = currentPlayer;
-        UpdatedOneDimentionalArraySquares.push(square)
+        updatedSquares1D.push(square)
 
         setCount(count + 1);
+        setCurrentPlayer(currentPlayer === PLAYER_1 ? PLAYER_2 : PLAYER_1)
 
-        if (currentPlayer === PLAYER_1) {
-          setCurrentPlayer(PLAYER_2)
-        } else {
-          setCurrentPlayer(PLAYER_1)
-        }; 
       } else {
-        UpdatedOneDimentionalArraySquares.push(square);
+        updatedSquares1D.push(square);
       }
   
     });
 
     let newSquares = []; 
-    for(let i=0;i < UpdatedOneDimentionalArraySquares.length;i = i+3)
-      {newSquares.push(UpdatedOneDimentionalArraySquares.slice(i,i+3))};
+    for(let i=0;i < updatedSquares1D.length;i = i+3)
+      {newSquares.push(updatedSquares1D.slice(i,i+3))};
       
     setSquares(newSquares);
     checkForWinner();
@@ -97,18 +92,15 @@ const App = () => {
     } else if(squares[2][0].value === squares[1][1].value && squares[1][1].value === squares[0][2].value && squares[1][1] !== ''){
       setWinner(squares[2][0].value)
     }
-    // else check if all squares are not empty and then show tie
-  
-    // setWinner('tie')
 
   }
 
   const status = () => {
-    if(winner === '' && count === 9 ){
+    if (winner === '' && count === 9 ) {
       return `It's a tie!`
-    }else if(winner !== '' ){
+    } else if (winner !== '' ) {
       return `Winner is ${winner}`
-    }else{
+    } else {
       return `The current player is ${currentPlayer}`
     }
   }
