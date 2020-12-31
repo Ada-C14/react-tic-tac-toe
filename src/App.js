@@ -23,14 +23,12 @@ const generateSquares = () => {
       currentId += 1;
     }
   }
-
   return squares;
 }
 
 const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [player, setPlayer] = useState(PLAYER_1);
-  // const [winner, setWinner] = useState(null);
 
   // Wave 2
   const updateSquare = (updatedSquare) => {
@@ -40,7 +38,7 @@ const App = () => {
       for(let square of row) {
         if (square.id === updatedSquare.id && square.value === '') {
           count++
-            square.value = player;          
+          square.value = player;          
         }
       }
     };
@@ -60,21 +58,18 @@ const App = () => {
 
     const winPossibilities = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]]
     let allSquares = squares.flat()
-    //[0,1,2,3,4,5,6,7,8]
+
     winPossibilities.forEach((possibility) => {
       let rowOfThree = []
       possibility.forEach((i) => {
         rowOfThree.push(allSquares[i])
       })
       if (rowOfThree.every(obj => obj.value === 'x')) {
-        console.log('Winner is x');
         winner = PLAYER_1
-        
       } else if (rowOfThree.every(obj => obj.value === 'o')) {
         console.log('Winner is o');
         winner = PLAYER_2
       } else if (allSquares.every(obj => obj.value !== '')) {
-        console.log('Tie');
         winner = 'tie'
       }
     })
