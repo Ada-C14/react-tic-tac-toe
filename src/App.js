@@ -86,6 +86,10 @@ const App = () => {
 
     // 2. Go down each column to see if
     //    3 squares in each column match
+    for (let column = 0; column < 3; column++) {
+      const columnString = newSquares[0][column].value + newSquares[1][column].value + newSquares[2][column].value;
+      checkWinnerString(columnString);
+    }
 
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
