@@ -5,18 +5,15 @@ import PropTypes from 'prop-types';
 
 
 const generateSquareComponents = (squares, onClickCallback) => {
-  
   const arrOneDimensional = [].concat(...squares);
-  
+
   const squareComponents = arrOneDimensional.map(square => 
     <Square
       key={square.id}
       id={square.id}
       value={square.value}
-
       onClickCallback={onClickCallback}
     />);
-
   return squareComponents
 }
 

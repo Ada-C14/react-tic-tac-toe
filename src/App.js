@@ -33,9 +33,7 @@ const App = () => {
   const [playCount, setPlayCount] = useState(0)
   const [winner, setWinner] = useState('')
 
-
   const callback = (updatedSquare) => {
-   
     const squares = [...squareList]
 
     for (let j = 0; j < 3; j++) {
@@ -44,11 +42,8 @@ const App = () => {
         if (currentSquare.id === updatedSquare.id) {
           if (currentSquare.value !== '') { break; }
           if (winner !== '') {break;}
-          if (playCount % 2 === 0) {
-            currentSquare.value = 'x'
-          } else {
-            currentSquare.value = 'o'
-          }
+          playCount % 2 === 0 ? currentSquare.value = 'x' : currentSquare.value = 'o'
+
           setPlayCount(playCount + 1)
           checkForWinner()
         }
@@ -57,8 +52,6 @@ const App = () => {
     setSquares(squares)
 }
   
-
-
   const checkForWinner = () => {
   
     const winningConditions = [
@@ -78,8 +71,6 @@ const App = () => {
         setWinner(winningConditions[i][0])
       }
     }
-
-
   }
 
   const resetGame = () => {
