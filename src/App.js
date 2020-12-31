@@ -36,7 +36,7 @@ const App = () => {
   const updateSquare = (updatedSquareId) => {
   
     const newSquares = [];
-    
+    if (winner=== null) {
     for (const row of squares) { 
       const newRow = [];
       newSquares.push(newRow);
@@ -55,6 +55,9 @@ const App = () => {
       
         }
       }
+    }
+  } else {
+    return;
   }
   checkForWinner(newSquares)
   setSquares(newSquares)
