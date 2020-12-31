@@ -30,10 +30,13 @@ const App = () => {
   // This starts state off as a 2D array of JS objects with
   // empty value and unique ids.
   const [squares, setSquares] = useState(generateSquares());
-  const [player, setPlayer] = useState(PLAYER_1)
+  const [player, setPlayer] = useState(PLAYER_1);
+  const [winner, setWinner] = useState(`...`);
 
   const onClickCallback = (id) => {
     const updatedSquares = generateSquares();
+
+    if (winner !== '...') return; // Don't continue updating after winner is declared
     
     for (let row = 0; row < 3; row += 1) {
       for (let col = 0; col < 3; col += 1) {
@@ -46,8 +49,9 @@ const App = () => {
         }
       }
     }
-    
+
     setSquares(updatedSquares);
+    checkForWinner();
   }
 
 
@@ -55,7 +59,6 @@ const App = () => {
   // You will need to create a method to change the square 
   //   When it is clicked on.
   //   Then pass it into the squares as a callback
-
 
   const checkForWinner = () => {
     // Complete in Wave 3
@@ -68,18 +71,51 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
 
+    // Also: cease responding to clicks when winnner declared.
+    // Q: How do you tie in tictactoe?? I only know about draws and wins??
+
+    // winning combinations: 
+    // - three across (row) => [row][0], [row][1], [row][2]
+    // - three up and down (col) => [col][0], [col][1], [col][2]
+    // - two diagonal options => [0][0], [1][1], [2][2] && [0][2], [1][1], [2][0]
+    
+    for(let i = 0; i < squares.length; i ++){
+        // check for a winning row
+        if (squares[i][0].value !== '' && squares[i][0].value === squares[i][1].value && squares[i][1].value === squares[i][2].value){
+          setWinner(squares[i][0].value);
+          break;
+        } 
+        // check for a winning column
+        else if (squares[0][i].value !== '' && squares[0][i].value === squares[1][i].value && squares[1][i].value === squares[2][i].value){
+          setWinner(squares[0][i].value); 
+          break;
+        } 
+        // check for diagonals  
+        else if (squares[0][0].value !== '' && squares[0][0].value === squares[1][1].value && squares[1][1].value === squares[2][2].value){
+          setWinner(squares[0][0].value); 
+          break;
+        } 
+        else if (squares[0][2].value !== '' && squares[0][2].value === squares[1][1].value && squares[1][1].value === squares[2][0].value){
+          setWinner(squares[0][2].value);
+          break;
+        }     
+    }
   }
 
   const resetGame = () => {
     // Complete in Wave 4
+    setPlayer(PLAYER_1);
+    setSquares(generateSquares());
+    setWinner(`...`);
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>Current Player: {player} </h2>
-        <button>Reset Game</button>
+        {/* <h2>Current Player: {player} </h2> */}
+        <h2>The winner is {winner} </h2>
+        <button onClick={() => {resetGame()}}>Reset Game</button>
       </header>
       <main>
         <Board squares={squares} onClickCallback={onClickCallback}/> 
