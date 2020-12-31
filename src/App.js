@@ -98,8 +98,10 @@ const App = () => {
   const status = () => {
     if (winner === '' && count === 9 ) {
       return `It's a tie!`
-    } else if (winner !== '' ) {
-      return `Winner is ${winner}`
+    } else if (winner === 'X' ) {
+      return `Winner is x`
+    } else if (winner === 'O' ) {
+      return `Winner is o`
     } else {
       return `The current player is ${currentPlayer}`
     }
