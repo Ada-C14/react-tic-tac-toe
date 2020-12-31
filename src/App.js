@@ -33,6 +33,11 @@ const App = () => {
   const [player, setCurrentPlayer] = useState(PLAYER_1);
 
   const updateSquare = (updatedSquare) => {
+    //this function call doesn't allow to update square if winner is found 
+    if (checkForWinner() != '') {
+      return
+    }
+      
     const updateCurrentPlayer = (updatedCurrentPlayer) => {
 
       if (player === PLAYER_1) {
@@ -71,8 +76,6 @@ const App = () => {
   //   Then pass it into the squares as a callback
 
   const checkForWinner = () => {
-
-    let winner = ''
     // Complete in Wave 3
     // You will need to:
     // 1. Go accross each row to see if 
@@ -83,7 +86,8 @@ const App = () => {
     // 3. Go across each diagonal to see if 
     //    all three squares have the same value.
       for (let i = 0; i < squares.length; i++) {
-        //rows
+        //rows 
+        //added condition that checks is square not empty
         if (squares[i][0].value === squares[i][1].value && 
             squares[i][1].value === squares[i][2].value &&
             squares[i][2].value != '') {
@@ -102,8 +106,26 @@ const App = () => {
         squares[1][1].value === squares[0][2].value) {
         return squares[2][0].value;
       };
+      return '';
+  }
+  //add a function to display tie message
+  const displayResult = () => {
+    const winner = checkForWinner();
+    if (winner != '') {
+      return <h2>The winner is {winner}</h2>
+    } 
+    //checking that all squares were filled
+    for (let i = 0; i < squares.length; i++) {
+      for (let j = 0; j < squares.length; j++) {
+        if (squares[i][j].value === '') {
+          return ''
+        }
+      }
+    }
+    return <h2>It's a tie!</h2>
   }
 
+  
   const resetGame = () => {
     // Complete in Wave 4
   }
@@ -112,7 +134,8 @@ const App = () => {
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>The winner is {checkForWinner()}</h2>
+        {/* <h2>The winner is {checkForWinner()}</h2> */}
+        {displayResult()}
         <button>Reset Game</button>
       </header>
       <main>
