@@ -32,12 +32,14 @@ const App = () => {
   const [squares, setSquares] = useState(generateSquares());
   const [current, changeCurrent] = useState(true);
 
+
   const onClickCallback = (event) => {
     let newSquares = [];
     for (let i = 0; i < squares.length; i += 1) {
       for (let j = 0; j < squares.length; j += 1) {
         if(event === squares[i][j].id){
-        squares[i][j]['value'] = (switchPlayer() ? PLAYER_1 : PLAYER_2);
+          // need conditional to stop user from playing square if it is not an empty stringq
+        squares[i][j]['value'] = (switchPlayer() ? PLAYER_1 : PLAYER_2); // we can use object.notation for accessing value here
         }
       }
       newSquares.push(squares[i]);
@@ -71,27 +73,18 @@ const App = () => {
 const resetGame = () => {
 setSquares(generateSquares());
 }
+
+let subheader = 'The game is still on...'
 let winner = checkForWinner();
   if(winner !== -1){
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1>React Tic Tac Toe</h1>
-          <h2>The winner is {winner} </h2>
-          <button>Reset Game</button>
-        </header>
-        <main>
-          <p>WoHOO!!!</p>
-        </main>
-      </div>
-    );
+    subheader = `Winner is ${winner}`
   }
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>React Tic Tac Toe</h1>
-        <h2>Game is still on... </h2>
+        <h2>{subheader}</h2>
         <button onClick={resetGame}>Reset Game</button>
       </header>
       <main>
@@ -99,5 +92,7 @@ let winner = checkForWinner();
       </main>
     </div>
   );
-} 
+  }
+ 
+
 export default App;
