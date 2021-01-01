@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 
 import './Square.css'
 
+  // When you click, the event listener will go back to App.js
 const Square = (props) => {
-  // For Wave 1 enable this 
-  //  Component to alert a parent 
-  //  component when it's clicked on.
-
-  return <button
+  return <button 
     className="square"
+    onClick={() => {props.onClickCallback(props.id)}} // Event handler
+  // Callback function is called here on Square then cascades up    
   >
     {props.value}
   </button>
