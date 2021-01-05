@@ -83,6 +83,8 @@ const App = () => {
           if (currentSquare.value !== '') return;
 
           found = true;
+          // Note: This is actually updating the squares state variable, bringing it out of sync with state.
+          // setWinner is relying on squares going out of sync with state
           currentSquare.value = currentPlayer;
           setNumSquaresFilled(numSquaresFilled + 1);
           if (currentPlayer === PLAYER_1) {
